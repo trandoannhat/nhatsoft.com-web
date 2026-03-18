@@ -2,72 +2,55 @@ name: Deploy Nhatsoft Web
 
 on:
   push:
-    branches: ["master"] # đổi thành main nếu cần
+    branches: ["master"] # hoặc "main" nếu nhánh chính là main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Lấy source code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # 3. Cache node_modules để build nhanh hơn
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      # 4. Build Next.js
-      - name: Install dependencies & Build
+      - name: Install dependencies and Build
+        # Nhận biến môi trường từ GitHub Secrets nếu cần
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
         run: |
           npm install
           npm run build
 
-      # 5. Copy code lên VPS
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }} # PHẢI là deploy
-          password: ${{ secrets.VPS_PASSWORD }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }} # dùng SSH Key thay vì password
           port: 24700
           source: ".next,public,package.json,package-lock.json,next.config.*"
           target: "/var/www/nhatsoft.com"
+          strip_components: 0
 
-      # 6. SSH vào VPS để chạy app
       - name: Start PM2 on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }} # PHẢI là deploy
-          password: ${{ secrets.VPS_PASSWORD }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
           port: 24700
           script: |
-            echo "==== GO TO PROJECT ===="
             cd /var/www/nhatsoft.com
 
-            echo "==== CLEAN OLD BUILD ===="
-            rm -rf .next
-
-            echo "==== INSTALL DEPENDENCIES ===="
+            # Cài các gói cần thiết cho production
             npm install --production
 
-            echo "==== START PM2 ===="
+            # Khởi động hoặc reload PM2 process nhatsoft-web trên port 3004
             PORT=3004 pm2 reload nhatsoft-web || PORT=3004 pm2 start npm --name "nhatsoft-web" -- start
 
-            echo "==== SAVE PM2 ===="
+            # Lưu trạng thái PM2 để tự động bật lại khi VPS restart
             pm2 save
-
-            echo "==== DONE ===="
