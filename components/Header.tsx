@@ -27,9 +27,9 @@ export default function Header() {
 
         {/* Điều hướng Desktop (Ẩn trên Mobile) */}
         <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-blue-600 transition-colors">
+          {/* <Link href="/" className="hover:text-blue-600 transition-colors">
             Trang chủ
-          </Link>
+          </Link> */}
           <Link href="/" className="text-blue-600">
             Giải pháp & Dự án
           </Link>
@@ -50,7 +50,7 @@ export default function Header() {
             className="flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-blue-600 transition-colors"
           >
             <PhoneCall className="w-4 h-4 text-blue-600" />
-            0907 011 886
+            0937 120 121
           </a>
           <div className="w-px h-5 bg-gray-300"></div>
           <button className="text-sm font-medium bg-gray-900 text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-all active:scale-95 shadow-sm">
@@ -105,7 +105,7 @@ export default function Header() {
               className="flex items-center gap-2 text-base font-bold text-gray-700"
             >
               <PhoneCall className="w-5 h-5 text-blue-600" />
-              0907 011 886
+              0937 120 121
             </a>
             <button className="w-full text-base font-medium bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition-all active:scale-95 shadow-sm">
               Nhận tư vấn
