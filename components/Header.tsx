@@ -30,12 +30,12 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-10 text-sm font-bold text-slate-600">
           <Link
-            href="#products"
+            href="/#products"
             className="hover:text-indigo-600 transition-colors"
           >
             Sản phẩm
           </Link>
-          <Link href="#" className="hover:text-indigo-600 transition-colors">
+          <Link href="/" className="hover:text-indigo-600 transition-colors">
             Hệ sinh thái
           </Link>
           <a
@@ -59,9 +59,14 @@ export default function Header() {
             </div>
             0937 120 121
           </a>
-          <button className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-md active:scale-95">
+
+          {/* SỬA NÚT THÀNH LINK CHUYỂN HƯỚNG TỚI DANH SÁCH SẢN PHẨM */}
+          <Link
+            href="/#products"
+            className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-md active:scale-95 block"
+          >
             Dùng thử Demo
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -82,10 +87,18 @@ export default function Header() {
         <div className="md:hidden bg-white border-t border-slate-100 shadow-2xl absolute w-full left-0 animate-in fade-in slide-in-from-top-4">
           <div className="px-6 py-8 space-y-6">
             <nav className="flex flex-col gap-6">
-              <Link href="/" className="text-xl font-black text-indigo-600">
+              <Link
+                href="/#products"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xl font-black text-indigo-600"
+              >
                 Sản phẩm
               </Link>
-              <Link href="/" className="text-xl font-black text-slate-900">
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xl font-black text-slate-900"
+              >
                 Hệ sinh thái
               </Link>
               <a
@@ -103,9 +116,15 @@ export default function Header() {
                 <PhoneCall className="w-5 h-5 text-indigo-600" />
                 0937 120 121
               </a>
-              <button className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-100">
-                Nhận tư vấn ngay
-              </button>
+
+              {/* SỬA NÚT THÀNH LINK Ở MOBILE VÀ ĐÓNG MENU KHI CLICK */}
+              <Link
+                href="/#products"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full py-4 text-center bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-100 block"
+              >
+                Dùng thử Demo
+              </Link>
             </div>
           </div>
         </div>

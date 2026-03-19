@@ -21,6 +21,7 @@ export interface Product {
   iconName: string;
   techStack: TechStack[];
   features: string[];
+  demoUrl?: string; // Thêm trường này (có dấu ? để không bị lỗi nếu sản phẩm nào chưa có link)
 }
 
 export const CATEGORIES = [
@@ -47,6 +48,7 @@ export const PRODUCTS: Product[] = [
     badge: "Bán chạy",
     badgeColor: "bg-red-100 text-red-700",
     iconName: "Layout",
+    demoUrl: "https://pitch.nhatsoft.com", // <-- Bổ sung link demo
     techStack: [
       {
         name: ".NET 8 (Web API)",
@@ -94,6 +96,7 @@ export const PRODUCTS: Product[] = [
     badge: "Premium",
     badgeColor: "bg-amber-100 text-amber-700",
     iconName: "Star",
+    demoUrl: "https://spa.nhatsoft.com", // <-- Bổ sung link demo
     techStack: [
       {
         name: ".NET 8",
@@ -119,6 +122,127 @@ export const PRODUCTS: Product[] = [
       "Quản lý gói liệu trình (mua 10 tặng 2, trừ lùi buổi làm).",
       "Tính hoa hồng nhân viên, kỹ thuật viên phức tạp.",
       "App Mobile dành riêng cho khách hàng theo dõi liệu trình.",
+    ],
+  }, // ... (giữ nguyên id 1 và 2 của bạn ở trên)
+  {
+    id: "3",
+    title: "Hệ thống CRM Multi-tenant Enterprise",
+    version: "v3.0.0",
+    lastUpdate: "Tháng 3, 2026",
+    desc: "Nền tảng CRM đa khách thuê (Multi-tenant) với hệ thống phân quyền RBAC linh hoạt, kiến trúc Microservices tối ưu cho mô hình SaaS.",
+    fullDescription:
+      "Kiến trúc phần mềm cấp doanh nghiệp được thiết kế theo chuẩn Clean Architecture. Hỗ trợ cách ly dữ liệu theo từng tenant, phân quyền chi tiết (Role-Based Access Control) và dễ dàng scale-up cho các hệ thống lớn có hàng trăm nghìn user.",
+    categoryId: "webapp",
+    price: "Từ 25.000.000đ",
+    badge: "Enterprise",
+    badgeColor: "bg-indigo-100 text-indigo-700",
+    iconName: "ShieldCheck",
+    demoUrl: "https://crm.nhatsoft.com", // <-- Bổ sung link demo
+    techStack: [
+      {
+        name: ".NET 8",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "Next.js 14",
+        iconName: "Layout",
+        color: "text-slate-800",
+        bg: "bg-slate-100",
+      },
+      {
+        name: "PostgreSQL",
+        iconName: "Database",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "Redis Cache",
+        iconName: "Database",
+        color: "text-red-500",
+        bg: "bg-red-50",
+      },
+    ],
+    features: [
+      "Kiến trúc Multi-tenant (Database-per-tenant hoặc Shared-database).",
+      "Hệ thống phân quyền RBAC (Role, Permission, Policy) linh hoạt.",
+      "Tích hợp Elasticsearch cho tốc độ tìm kiếm Real-time.",
+      "Cơ chế Caching phân tán với Redis giúp tối ưu hiệu năng.",
+    ],
+  },
+  {
+    id: "4",
+    title: "Coffee Price Scraper API",
+    version: "v1.2.0",
+    lastUpdate: "Tháng 3, 2026",
+    desc: "API RESTful tự động thu thập, phân tích và đồng bộ giá nông sản/cà phê trực tuyến thời gian thực. Tích hợp cực nhanh vào hệ thống của bạn.",
+    fullDescription:
+      "Giải pháp Web Scraping hiệu năng cao chuyên lấy dữ liệu giá thị trường (như giacaphe.com). API cung cấp dữ liệu JSON chuẩn hóa, hỗ trợ Webhook và cơ chế Retry tự động khi có lỗi mạng, giúp website của bạn luôn cập nhật giá mới nhất tính bằng giây.",
+    categoryId: "api",
+    price: "1.500.000đ / Năm",
+    badge: "Mới",
+    badgeColor: "bg-emerald-100 text-emerald-700",
+    iconName: "Zap",
+    techStack: [
+      {
+        name: "C# Worker Service",
+        iconName: "Code2",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "RESTful API",
+        iconName: "Server",
+        color: "text-green-600",
+        bg: "bg-green-50",
+      },
+    ],
+    features: [
+      "Thu thập dữ liệu thời gian thực (Real-time Scraping).",
+      "Cung cấp Webhook bắn dữ liệu tự động khi có biến động giá.",
+      "Giới hạn tỷ lệ gọi (Rate Limiting) và bảo mật bằng API Key.",
+      "Tài liệu Swagger/OpenAPI chi tiết, dễ dàng tích hợp.",
+    ],
+  },
+  {
+    id: "5",
+    title: ".NET 8 Clean Architecture Boilerplate",
+    version: "v2.0.0",
+    lastUpdate: "Tháng 3, 2026",
+    desc: "Mã nguồn khởi tạo dự án chuẩn Enterprise dành cho Developer. Tích hợp sẵn Auth, Asynchronous pattern và Best Practices mới nhất.",
+    fullDescription:
+      "Khung mã nguồn (Boilerplate) đúc kết từ hàng chục dự án thực tế. Giúp đội ngũ Dev tiết kiệm 2-3 tuần thiết lập ban đầu. Code base đã cấu hình sẵn JWT, Global Exception, CQRS Pattern và xử lý lập trình bất đồng bộ (Async) tối ưu.",
+    categoryId: "source",
+    price: "2.990.000đ",
+    badge: "Dành cho Dev",
+    badgeColor: "bg-slate-100 text-slate-700",
+    iconName: "Code",
+    techStack: [
+      {
+        name: ".NET 8 Core",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "EF Core 8",
+        iconName: "Database",
+        color: "text-sky-600",
+        bg: "bg-sky-50",
+      },
+      {
+        name: "MediatR",
+        iconName: "Code2",
+        color: "text-slate-700",
+        bg: "bg-slate-100",
+      },
+    ],
+    features: [
+      "Cấu trúc thư mục chuẩn Clean Architecture (Domain, Application, Infrastructure, API).",
+      "Tối ưu hóa lập trình bất đồng bộ (Asynchronous Programming).",
+      "Tích hợp sẵn hệ thống Log tập trung (Serilog).",
+      "Kèm theo tài liệu hướng dẫn (Workshop Material) đào tạo nội bộ.",
     ],
   },
 ];
