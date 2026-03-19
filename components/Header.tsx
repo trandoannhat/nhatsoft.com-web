@@ -1,115 +1,112 @@
-// components/Header.tsx
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Zap, ExternalLink, PhoneCall, Menu, X } from "lucide-react";
+import {
+  Zap,
+  ExternalLink,
+  PhoneCall,
+  Menu,
+  X,
+  ArrowRight,
+} from "lucide-react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-            <Zap className="text-white w-5 h-5" />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center group-hover:bg-indigo-600 transition-all duration-300 shadow-lg shadow-indigo-100">
+            <Zap className="text-white w-6 h-6" />
           </div>
-          <span className="text-xl font-bold text-gray-900 tracking-tight">
-            Nhat<span className="text-blue-600">Soft</span>
+          <span className="text-2xl font-black text-slate-900 tracking-tighter">
+            Nhat<span className="text-indigo-600">Soft</span>
           </span>
         </Link>
 
-        {/* Điều hướng Desktop (Ẩn trên Mobile) */}
-        <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-          {/* <Link href="/" className="hover:text-blue-600 transition-colors">
-            Trang chủ
-          </Link> */}
-          <Link href="/" className="text-blue-600">
-            Giải pháp & Dự án
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-10 text-sm font-bold text-slate-600">
+          <Link
+            href="#products"
+            className="hover:text-indigo-600 transition-colors"
+          >
+            Sản phẩm
+          </Link>
+          <Link href="#" className="hover:text-indigo-600 transition-colors">
+            Hệ sinh thái
           </Link>
           <a
             href="https://nhatdev.top"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 transition-colors flex items-center gap-1"
+            className="hover:text-indigo-600 transition-colors flex items-center gap-1.5"
           >
-            Tech Blog <ExternalLink className="w-3 h-3" />
+            Tech Blog <ExternalLink className="w-3.5 h-3.5 opacity-50" />
           </a>
         </nav>
 
-        {/* Liên hệ & CTA Desktop */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-6">
           <a
-            href="tel:0907011886"
-            className="flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-blue-600 transition-colors"
+            href="tel:0937120121"
+            className="flex items-center gap-2 text-sm font-black text-slate-700 hover:text-indigo-600 transition-all"
           >
-            <PhoneCall className="w-4 h-4 text-blue-600" />
+            <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
+              <PhoneCall className="w-4 h-4 text-indigo-600" />
+            </div>
             0937 120 121
           </a>
-          <div className="w-px h-5 bg-gray-300"></div>
-          <button className="text-sm font-medium bg-gray-900 text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-all active:scale-95 shadow-sm">
-            Nhận tư vấn
+          <button className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-md active:scale-95">
+            Dùng thử Demo
           </button>
         </div>
 
-        {/* Nút Hamburger Menu cho Mobile */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={toggleMenu}
-            className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none transition-colors"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
-        </div>
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2.5 rounded-xl bg-slate-50 text-slate-600 hover:text-indigo-600 transition-all"
+        >
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
+        </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
-          <div className="px-4 pt-2 pb-4 space-y-1">
-            <Link
-              href="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-            >
-              Trang chủ
-            </Link>
-            <Link
-              href="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50"
-            >
-              Giải pháp & Dự án
-            </Link>
-            <a
-              href="https://nhatdev.top"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-            >
-              Tech Blog <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
-
-          <div className="pt-4 pb-4 border-t border-gray-200 px-5 space-y-4">
-            <a
-              href="tel:0907011886"
-              className="flex items-center gap-2 text-base font-bold text-gray-700"
-            >
-              <PhoneCall className="w-5 h-5 text-blue-600" />
-              0937 120 121
-            </a>
-            <button className="w-full text-base font-medium bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition-all active:scale-95 shadow-sm">
-              Nhận tư vấn
-            </button>
+        <div className="md:hidden bg-white border-t border-slate-100 shadow-2xl absolute w-full left-0 animate-in fade-in slide-in-from-top-4">
+          <div className="px-6 py-8 space-y-6">
+            <nav className="flex flex-col gap-6">
+              <Link href="/" className="text-xl font-black text-indigo-600">
+                Sản phẩm
+              </Link>
+              <Link href="/" className="text-xl font-black text-slate-900">
+                Hệ sinh thái
+              </Link>
+              <a
+                href="https://nhatdev.top"
+                className="text-xl font-black text-slate-900 flex items-center gap-2"
+              >
+                Tech Blog <ExternalLink className="w-5 h-5 opacity-30" />
+              </a>
+            </nav>
+            <div className="pt-8 border-t border-slate-100 flex flex-col gap-4">
+              <a
+                href="tel:0937120121"
+                className="flex items-center justify-center gap-3 py-4 bg-slate-50 rounded-2xl font-black text-slate-900"
+              >
+                <PhoneCall className="w-5 h-5 text-indigo-600" />
+                0937 120 121
+              </a>
+              <button className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-100">
+                Nhận tư vấn ngay
+              </button>
+            </div>
           </div>
         </div>
       )}
