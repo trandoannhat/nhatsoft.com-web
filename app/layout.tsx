@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+// Cập nhật chuẩn SEO cho NhatSoft
+import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -11,9 +12,6 @@ const beVietnam = Be_Vietnam_Pro({
   variable: "--font-be-vietnam",
   display: "swap",
 });
-
-// Cập nhật chuẩn SEO cho NhatSoft
-import type { Metadata, Viewport } from "next";
 
 // Thiết lập Viewport riêng (Chuẩn Next.js 14+)
 export const viewport: Viewport = {
