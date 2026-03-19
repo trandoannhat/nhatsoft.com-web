@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
     fullDescription:
       "Hệ thống CRM toàn diện thiết kế riêng cho chuỗi Spa và Salon làm đẹp. Giúp tối ưu hóa vận hành, chăm sóc khách hàng tự động và quản lý hoa hồng nhân viên chính xác tuyệt đối.",
     categoryId: "webapp",
-    price: "Từ 5.000.000đ",
+    price: "Từ 3.000.000đ",
     badge: "Premium",
     badgeColor: "bg-amber-100 text-amber-700",
     iconName: "Star",
@@ -243,6 +243,52 @@ export const PRODUCTS: Product[] = [
       "Tối ưu hóa lập trình bất đồng bộ (Asynchronous Programming).",
       "Tích hợp sẵn hệ thống Log tập trung (Serilog).",
       "Kèm theo tài liệu hướng dẫn (Workshop Material) đào tạo nội bộ.",
+    ],
+  },
+  {
+    id: "outsource-web-dev",
+    title: "Dịch vụ Phát triển Web & Gia công Phần mềm",
+    version: "2026",
+    lastUpdate: "Liên tục",
+    desc: "Nhận thiết kế website trọn gói. Từ Web giới thiệu/Landing Page nhanh gọn đến các hệ thống Web App, CRM phức tạp theo yêu cầu.",
+    fullDescription:
+      "Cung cấp giải pháp phần mềm may đo cho doanh nghiệp và cá nhân. Chúng tôi triển khai đa dạng công nghệ: từ WordPress tối ưu chi phí, tốc độ cao cho Web bán hàng/Giới thiệu, cho đến kiến trúc Next.js & .NET 8 Enterprise cho các hệ thống Quản trị, SaaS, đa người dùng.",
+    categoryId: "Dịch vụ",
+    price: "Từ 3.000.000đ",
+    badge: "Outsource",
+    badgeColor: "bg-orange-100 text-orange-700",
+    iconName: "Layout",
+    techStack: [
+      {
+        name: "WordPress",
+        iconName: "Layout",
+        color: "text-blue-500",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "Next.js & React",
+        iconName: "Code2",
+        color: "text-slate-800",
+        bg: "bg-slate-100",
+      },
+      {
+        name: ".NET 8 Backend",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "Tối ưu SEO",
+        iconName: "Zap",
+        color: "text-amber-500",
+        bg: "bg-amber-50",
+      },
+    ],
+    features: [
+      "Thiết kế Landing Page, Web công ty, Blog siêu tốc với WordPress.",
+      "Phát triển hệ thống Web App, SaaS phức tạp bằng Next.js & C#.",
+      "Tư vấn kiến trúc hệ thống, Database và giải pháp Cloud.",
+      "Bàn giao toàn bộ mã nguồn, bảo hành kỹ thuật 12 tháng.",
     ],
   },
 ];
