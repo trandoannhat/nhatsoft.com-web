@@ -16,6 +16,8 @@ import {
   Clock,
   ArrowUpRight,
 } from "lucide-react";
+
+// Đảm bảo file data của bạn có chứa PRODUCTS
 import { PRODUCTS } from "../data/products";
 
 export default function NhatSoftProductHome() {
@@ -27,7 +29,9 @@ export default function NhatSoftProductHome() {
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white font-sans selection:bg-indigo-100 selection:text-indigo-700">
+      {/* ========================================== */}
       {/* 1. HERO SECTION: Thiết kế dạng "SaaS Platform" */}
+      {/* ========================================== */}
       <section className="relative pt-24 pb-20 lg:pt-36 lg:pb-32 overflow-hidden bg-slate-50/50">
         {/* Tailwind 4 Mesh Gradient Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -46,14 +50,14 @@ export default function NhatSoftProductHome() {
               Hệ sinh thái NhatSoft Enterprise v3.0
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-heading font-black text-slate-900 tracking-tight mb-8 leading-[1.1]">
+            <h1 className="text-5xl md:text-7xl font-heading font-black text-slate-900 tracking-tighter mb-8 leading-[1.1]">
               Sản phẩm công nghệ <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600">
                 Chuẩn mực quốc tế
               </span>
             </h1>
 
-            <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
               Chúng tôi không chỉ bán mã nguồn, chúng tôi cung cấp giải pháp vận
               hành tối ưu được đóng gói hoàn chỉnh cho mọi mô hình doanh nghiệp.
             </p>
@@ -77,7 +81,9 @@ export default function NhatSoftProductHome() {
         </div>
       </section>
 
-      {/* 2. VALUE PROPOSITION: Tính năng cốt lõi của sản phẩm */}
+      {/* ========================================== */}
+      {/* 2. VALUE PROPOSITION: Tính năng cốt lõi */}
+      {/* ========================================== */}
       <section className="py-20 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -104,13 +110,13 @@ export default function NhatSoftProductHome() {
               },
             ].map((item, i) => (
               <div key={i} className="group">
-                <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-indigo-200 group-hover:rotate-3">
+                <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-indigo-200 group-hover:-translate-y-1">
                   {item.icon}
                 </div>
-                <h4 className="font-heading font-bold text-slate-900 text-lg mb-2">
+                <h4 className="font-heading font-bold text-slate-900 text-lg mb-2 tracking-tight">
                   {item.title}
                 </h4>
-                <p className="text-slate-500 text-sm leading-relaxed">
+                <p className="text-slate-500 text-sm leading-relaxed font-medium">
                   {item.desc}
                 </p>
               </div>
@@ -119,15 +125,17 @@ export default function NhatSoftProductHome() {
         </div>
       </section>
 
-      {/* 3. PRODUCT CATALOG: Tập trung vào giải pháp thực tế */}
+      {/* ========================================== */}
+      {/* 3. PRODUCT CATALOG: Danh sách sản phẩm */}
+      {/* ========================================== */}
       <section id="products" className="py-24 bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-heading font-black text-slate-900 mb-4">
+              <h2 className="text-4xl font-heading font-black text-slate-900 mb-4 tracking-tight">
                 Danh mục Sản phẩm
               </h2>
-              <p className="text-lg text-slate-500">
+              <p className="text-lg text-slate-500 font-medium">
                 Tìm kiếm giải pháp phù hợp để tăng trưởng doanh nghiệp của bạn.
               </p>
             </div>
@@ -136,86 +144,111 @@ export default function NhatSoftProductHome() {
               <input
                 type="text"
                 placeholder="Tìm sản phẩm (vd: CRM, Spa, Soccer...)"
-                className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all outline-none shadow-sm"
+                className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all outline-none shadow-sm font-medium"
+                value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="group flex flex-col bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="aspect-[16/10] bg-slate-900 relative overflow-hidden">
-                  {/* Glassmorphism Product Icon */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-950 to-slate-900">
-                    <div className="relative">
-                      <Box className="w-20 h-20 text-indigo-500/20 group-hover:scale-125 transition-transform duration-700" />
-                      <div className="absolute inset-0 blur-2xl bg-indigo-500/30 rounded-full animate-pulse" />
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {filteredProducts.map((product) => (
+                <Link
+                  href={`/products/${product.id}`}
+                  key={product.id}
+                  className="group flex flex-col bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 block focus:outline-none focus:ring-4 focus:ring-indigo-500/20"
+                >
+                  {/* 3.1 Hình ảnh Mockup */}
+                  <div className="aspect-[16/10] bg-slate-900 relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-950 to-slate-900">
+                      <div className="relative">
+                        <Box className="w-20 h-20 text-indigo-500/20 group-hover:scale-125 transition-transform duration-700" />
+                        <div className="absolute inset-0 blur-2xl bg-indigo-500/30 rounded-full animate-pulse" />
+                      </div>
                     </div>
+
+                    {product.badge && (
+                      <div
+                        className={`absolute top-6 right-6 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md ${product.badgeColor} border border-white/20`}
+                      >
+                        {product.badge}
+                      </div>
+                    )}
                   </div>
 
-                  {product.badge && (
-                    <div
-                      className={`absolute top-6 right-6 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md ${product.badgeColor} border border-white/20`}
-                    >
-                      {product.badge}
+                  {/* 3.2 Nội dung Card */}
+                  <div className="p-10 flex flex-col flex-grow">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wider rounded-lg">
+                        {product.categoryId}
+                      </span>
                     </div>
-                  )}
-                </div>
 
-                <div className="p-10 flex flex-col flex-grow">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wider rounded-lg">
-                      {product.categoryId}
-                    </span>
-                  </div>
+                    <h3 className="text-2xl font-heading font-black text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors tracking-tight">
+                      {product.title}
+                    </h3>
 
-                  <h3 className="text-2xl font-heading font-black text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                    {product.title}
-                  </h3>
+                    <p className="text-slate-500 leading-relaxed mb-10 line-clamp-2 font-medium">
+                      {product.desc}
+                    </p>
 
-                  <p className="text-slate-500 leading-relaxed mb-10 line-clamp-2">
-                    {product.desc}
-                  </p>
+                    <div className="mt-auto pt-8 border-t border-slate-100 flex items-center justify-between">
+                      <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                          Giá sở hữu
+                        </p>
+                        <p className="text-2xl font-heading font-black text-slate-900 tracking-tighter">
+                          {product.price}
+                        </p>
+                      </div>
 
-                  <div className="mt-auto pt-8 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] font-black text-slate-400 uppercase mb-1">
-                        Giá sở hữu
-                      </p>
-                      <p className="text-2xl font-heading font-black text-slate-900">
-                        {product.price}
-                      </p>
+                      <div className="w-12 h-12 bg-slate-50 text-slate-900 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm group-hover:rotate-12">
+                        <ArrowUpRight className="w-6 h-6" />
+                      </div>
                     </div>
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="w-12 h-12 bg-slate-50 text-slate-900 rounded-2xl flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm group-hover:rotate-12"
-                    >
-                      <ArrowUpRight className="w-6 h-6" />
-                    </Link>
                   </div>
-                </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            /* 3.3 Empty State */
+            <div className="text-center py-24 bg-white border-2 border-dashed border-slate-200 rounded-[2.5rem]">
+              <div className="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Search className="w-10 h-10 text-slate-300" />
               </div>
-            ))}
-          </div>
+              <h3 className="text-2xl font-heading font-black text-slate-900 mb-2 tracking-tight">
+                Không tìm thấy sản phẩm nào
+              </h3>
+              <p className="text-slate-500 font-medium">
+                Không có giải pháp nào khớp với từ khóa "{searchQuery}". Vui
+                lòng thử lại bằng một từ khóa khác.
+              </p>
+              <button
+                onClick={() => setSearchQuery("")}
+                className="mt-6 px-6 py-3 bg-indigo-50 text-indigo-600 font-bold rounded-xl hover:bg-indigo-100 transition-colors"
+              >
+                Xóa bộ lọc
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* 4. ECOSYSTEM: Sản phẩm tập trung - Một nền tảng duy nhất */}
+      {/* ========================================== */}
+      {/* 4. ECOSYSTEM: Hệ sinh thái hợp nhất */}
+      {/* ========================================== */}
       <section className="py-32 bg-slate-950 text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div>
-              <h2 className="text-4xl md:text-6xl font-heading font-black mb-10 leading-tight">
+              <h2 className="text-4xl md:text-6xl font-heading font-black mb-10 leading-tight tracking-tighter">
                 Hệ sinh thái <br />
                 <span className="text-indigo-500 underline decoration-indigo-500/30 underline-offset-8">
                   Hợp nhất.
                 </span>
               </h2>
-              <p className="text-slate-400 text-xl mb-12 leading-relaxed">
+              <p className="text-slate-400 text-xl mb-12 leading-relaxed font-medium">
                 Các sản phẩm của NhatSoft được xây dựng trên một nền tảng kiến
                 trúc duy nhất, cho phép dữ liệu lưu thông mượt mà giữa các
                 module quản lý.
@@ -246,7 +279,7 @@ export default function NhatSoftProductHome() {
                   {[1, 2, 3, 4].map((i) => (
                     <div
                       key={i}
-                      className="bg-white/5 border border-white/10 rounded-3xl flex items-center justify-center group/icon hover:bg-indigo-500/20 transition-all"
+                      className="bg-white/5 border border-white/10 rounded-3xl flex items-center justify-center group/icon hover:bg-indigo-500/20 transition-all cursor-pointer"
                     >
                       <LayoutGrid className="w-12 h-12 text-indigo-400/30 group-hover/icon:scale-110 group-hover/icon:text-indigo-400 transition-all duration-500" />
                     </div>
@@ -259,7 +292,9 @@ export default function NhatSoftProductHome() {
         </div>
       </section>
 
-      {/* 5. CTA: Hotline cập nhật mới 0937.120.121 */}
+      {/* ========================================== */}
+      {/* 5. CTA SECTION */}
+      {/* ========================================== */}
       <section className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <div className="mb-12">
@@ -267,7 +302,7 @@ export default function NhatSoftProductHome() {
             <h2 className="text-4xl md:text-5xl font-heading font-black text-slate-900 mb-6 tracking-tight">
               Sẵn sàng bứt phá doanh thu?
             </h2>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium">
               Chọn một sản phẩm, nhận hỗ trợ trực tiếp từ đội ngũ chuyên gia sản
               phẩm của NhatSoft.
             </p>
