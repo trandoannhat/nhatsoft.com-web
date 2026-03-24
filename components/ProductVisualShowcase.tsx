@@ -38,11 +38,11 @@ export default function ProductVisualShowcase({
           return (
             <div
               key={index}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center group ${isEven ? "" : "lg:flex-row-reverse"}`}
             >
               {/* PHẦN ẢNH */}
               <div
-                className={`relative transition-all duration-500 hover:scale-105 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+                className={`relative transition-all duration-500 hover:scale-[1.02] ${isEven ? "lg:order-1" : "lg:order-2"}`}
               >
                 <div
                   className={`absolute -inset-4 rounded-xl ${showcase.bgColor} opacity-60 blur-2xl transform rotate-3`}
@@ -52,7 +52,8 @@ export default function ProductVisualShowcase({
                     src={showcase.imagePath}
                     alt={showcase.title}
                     fill
-                    className="object-cover"
+                    // 🌟 FIX: Đã thêm scale-125 và group-hover:scale-[1.35]
+                    className="object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-700 cursor-pointer"
                     priority={index === 0}
                   />
                 </div>

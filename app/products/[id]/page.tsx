@@ -140,7 +140,7 @@ export default async function ProductDetail({
                 </a>
               ) : (
                 <a
-                  href="tel:0937120121" // 🌟 FIX LỖI: Đã điền đúng số Zalo của NhatDev
+                  href="tel:0937120121"
                   className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full sm:w-auto group"
                 >
                   <PhoneCall className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -157,7 +157,8 @@ export default async function ProductDetail({
                 src={heroImage}
                 alt={`${product.title} - Giao diện chính`}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                // 🌟 FIX: Đã thêm scale-125 để triệt tiêu vùng trống và group-hover:scale-[1.35]
+                className="object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-700"
                 priority
               />
             ) : (

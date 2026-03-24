@@ -191,6 +191,7 @@ export const PRODUCTS: Product[] = [
       "Quản lý kho hàng hóa, dịch vụ đi kèm (Nước uống, cho thuê đồ).",
       "Báo cáo doanh thu biểu đồ thời gian thực, chống thất thoát.",
       "Tích hợp API thanh toán chuyển khoản, tạo mã QR động.",
+      "🚀 Giao diện thực tế đang trong giai đoạn hoàn thiện (Coming Soon Quý 3/2026)",
     ],
   },
 
