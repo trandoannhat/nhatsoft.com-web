@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Đã import framer-motion
+import { motion } from "framer-motion";
+// 🌟 1. IMPORT NEXT IMAGE
+import Image from "next/image";
 import {
   Search,
   Box,
@@ -18,7 +20,6 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-// Đảm bảo file data của bạn có chứa PRODUCTS
 import { PRODUCTS } from "../data/products";
 import ConsultationModal from "@/components/ConsultationModal";
 
@@ -42,7 +43,6 @@ export default function NhatSoftProductHome() {
           <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-blue-200/20 rounded-full blur-[100px]" />
         </div>
 
-        {/* THÊM MOTION CHO HERO SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,6 @@ export default function NhatSoftProductHome() {
       {/* ========================================== */}
       <section className="py-20 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* BỌC MOTION ĐỂ TẠO HIỆU ỨNG STAGGER LẦN LƯỢT */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -184,7 +183,6 @@ export default function NhatSoftProductHome() {
           </div>
 
           {filteredProducts.length > 0 ? (
-            /* MOTION GRID CHO SẢN PHẨM */
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -215,16 +213,29 @@ export default function NhatSoftProductHome() {
                     href={`/products/${product.id}`}
                     className="group flex flex-col bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 h-full"
                   >
-                    <div className="aspect-[16/10] bg-slate-900 relative overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-950 to-slate-900">
-                        <div className="relative">
-                          <Box className="w-20 h-20 text-indigo-500/20 group-hover:scale-125 transition-transform duration-700" />
-                          <div className="absolute inset-0 blur-2xl bg-indigo-500/30 rounded-full animate-pulse" />
+                    {/* 🌟 2. PHẦN RENDER ẢNH SẢN PHẨM TRANG CHỦ */}
+                    <div className="aspect-[16/10] bg-slate-50 relative overflow-hidden">
+                      {product.featureImages &&
+                      product.featureImages.length > 0 ? (
+                        <Image
+                          src={product.featureImages[0]} // Ưu tiên ảnh số 1 làm ảnh bìa ngoài thẻ
+                          alt={product.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                      ) : (
+                        // Fallback icon Box cho các sản phẩm chưa có ảnh
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-950 to-slate-900">
+                          <div className="relative">
+                            <Box className="w-20 h-20 text-indigo-500/20 group-hover:scale-125 transition-transform duration-700" />
+                            <div className="absolute inset-0 blur-2xl bg-indigo-500/30 rounded-full animate-pulse" />
+                          </div>
                         </div>
-                      </div>
+                      )}
+
                       {product.badge && (
                         <div
-                          className={`absolute top-6 right-6 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md ${product.badgeColor} border border-white/20`}
+                          className={`absolute top-6 right-6 z-10 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md ${product.badgeColor} border border-white/20`}
                         >
                           {product.badge}
                         </div>
@@ -377,6 +388,7 @@ export default function NhatSoftProductHome() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            {/* 🌟 3. CẬP NHẬT SỐ ZALO CHÍNH CHỦ CỦA SẾP */}
             <a
               href="tel:0937120121"
               className="w-full sm:w-auto px-10 py-5 bg-indigo-600 text-white rounded-3xl font-black text-lg hover:bg-indigo-700 transition-all shadow-2xl shadow-indigo-200 flex items-center justify-center gap-4 group"
