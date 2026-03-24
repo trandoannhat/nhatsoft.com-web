@@ -7,7 +7,6 @@ export interface TechStack {
   bg: string;
 }
 
-// 🌟 UPDATE INTERFACE: Gộp chung Ảnh và Caption thành mảng visualShowcases
 export interface VisualShowcase {
   imagePath: string;
   title: string;
@@ -31,7 +30,7 @@ export interface Product {
   techStack: TechStack[];
   features: string[];
   demoUrl?: string;
-  visualShowcases?: VisualShowcase[]; // 🌟 Dữ liệu động cho màn hình Showcase
+  visualShowcases?: VisualShowcase[];
 }
 
 export const CATEGORIES = [
@@ -127,7 +126,7 @@ export const PRODUCTS: Product[] = [
     title: "Hệ thống Quản lý Sân bóng Mini",
     version: "v2.1.0",
     lastUpdate: "Tháng 3, 2026",
-    desc: "Giải pháp toàn diện đặt lịch, quản lý doanh thu và khách hàng. Xây dựng tối ưu với C#, .NET 8 và SQL Server.",
+    desc: "Giải pháp toàn diện đặt lịch, quản lý doanh thu và khách hàng. Xây dựng tối ưu với C#, .NET 8 và PostgreSQL.",
     fullDescription:
       "Giải pháp phần mềm quản lý sân bóng đá mini chuyên nghiệp. Tự động hóa quy trình đặt lịch (kéo thả trực quan), quản lý doanh thu, tính tiền dịch vụ (nước, bóng) và hệ thống báo cáo thống kê trực quan theo thời gian thực.",
     categoryId: "webapp",
@@ -167,16 +166,16 @@ export const PRODUCTS: Product[] = [
         bg: "bg-purple-50",
       },
       {
-        name: "C# 12",
+        name: "C# & EF Core", // Thay vì để cứng C# 12
         iconName: "Code2",
         color: "text-blue-600",
         bg: "bg-blue-50",
       },
       {
-        name: "SQL Server",
+        name: "SQL Server / PostgreSQL", // 🌟 FIX: Đã thêm PostgreSQL
         iconName: "Database",
-        color: "text-red-600",
-        bg: "bg-red-50",
+        color: "text-emerald-600",
+        bg: "bg-emerald-50",
       },
       {
         name: "Next.js 14",
@@ -205,7 +204,7 @@ export const PRODUCTS: Product[] = [
     lastUpdate: "Liên tục",
     desc: "Nhận thiết kế website trọn gói. Từ Web giới thiệu/Landing Page nhanh gọn đến các hệ thống Web App, CRM phức tạp theo yêu cầu.",
     fullDescription:
-      "Cung cấp giải pháp phần mềm may đo cho doanh nghiệp. Chúng tôi triển khai đa dạng công nghệ: từ WordPress tối ưu chi phí cho Web bán hàng, cho đến kiến trúc Next.js & .NET 8 Enterprise cho các hệ thống Quản trị, SaaS đa người dùng.",
+      "Cung cấp giải pháp phần mềm may đo cho doanh nghiệp. Chúng tôi triển khai đa dạng công nghệ: từ hệ sinh thái WordPress & MySQL tối ưu chi phí cho Web bán hàng, cho đến kiến trúc Next.js & .NET 8 Enterprise cho các hệ thống Quản trị, SaaS đa người dùng.",
     categoryId: "service",
     price: "Từ 3.000.000đ",
     badge: "Outsource",
@@ -236,28 +235,28 @@ export const PRODUCTS: Product[] = [
     ],
     techStack: [
       {
-        name: "Next.js & React",
+        name: "Next.js & React", // Cho Web App phức tạp
         iconName: "Code2",
         color: "text-slate-800",
         bg: "bg-slate-100",
       },
       {
-        name: ".NET 8 Backend",
+        name: ".NET 8 / Node.js", // Cho Backend phức tạp
         iconName: "Server",
         color: "text-purple-600",
         bg: "bg-purple-50",
       },
       {
-        name: "WordPress",
+        name: "WordPress & PHP", // 🌟 FIX: Đã thêm PHP
         iconName: "Layout",
         color: "text-blue-500",
         bg: "bg-blue-50",
       },
       {
-        name: "Tối ưu chuẩn SEO",
-        iconName: "Zap",
-        color: "text-amber-500",
-        bg: "bg-amber-50",
+        name: "MySQL / PostgreSQL", // 🌟 FIX: Đã thêm MySQL
+        iconName: "Database",
+        color: "text-emerald-500",
+        bg: "bg-emerald-50",
       },
     ],
     features: [
