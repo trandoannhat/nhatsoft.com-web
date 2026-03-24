@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next"; // BẮT BUỘC IMPORT METADATA
-// 🌟 1. IMPORT NEXT IMAGE ĐỂ TỐI ƯU ẢNH
 import Image from "next/image";
 import {
   CheckCircle2,
@@ -20,7 +19,6 @@ import {
   PhoneCall,
 } from "lucide-react";
 
-// Import data và Component mới
 import { PRODUCTS } from "../../../data/products";
 import ProductActionCard from "@/components/ProductActionCard";
 import ProductVisualShowcase from "@/components/ProductVisualShowcase";
@@ -36,9 +34,6 @@ const TechIconMap: Record<string, any> = {
   Code,
 };
 
-// ==========================================
-// HÀM TẠO SEO ĐỘNG CHO TỪNG SẢN PHẨM
-// ==========================================
 export async function generateMetadata({
   params,
 }: {
@@ -64,9 +59,6 @@ export async function generateMetadata({
   };
 }
 
-// ==========================================
-// COMPONENT GIAO DIỆN CHÍNH
-// ==========================================
 export default async function ProductDetail({
   params,
 }: {
@@ -79,12 +71,12 @@ export default async function ProductDetail({
     notFound();
   }
 
-  // Xác định ảnh Hero: Ưu tiên ảnh "Ghi đè" (index 2), fallback sang ảnh đầu tiên
+  // 🌟 FIX LỖI TYPE: Sử dụng biến visualShowcases thay vì biến cũ featureImages
   const heroImage =
-    product.featureImages && product.featureImages.length >= 3
-      ? product.featureImages[2] // Ảnh Ghi đè xịn xò
-      : product.featureImages && product.featureImages.length > 0
-        ? product.featureImages[0] // Ảnh fallback
+    product.visualShowcases && product.visualShowcases.length >= 3
+      ? product.visualShowcases[2].imagePath // Ảnh Ghi đè xịn xò
+      : product.visualShowcases && product.visualShowcases.length > 0
+        ? product.visualShowcases[0].imagePath // Ảnh fallback
         : null; // Không có ảnh
 
   return (
@@ -148,7 +140,7 @@ export default async function ProductDetail({
                 </a>
               ) : (
                 <a
-                  href="tel:0937120121" // 🌟 3. ĐÃ CẬP NHẬT SỐ ZALO CHUẨN CỦA SẾP
+                  href="tel:0937120121" // 🌟 FIX LỖI: Đã điền đúng số Zalo của NhatDev
                   className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full sm:w-auto group"
                 >
                   <PhoneCall className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -158,18 +150,17 @@ export default async function ProductDetail({
             </div>
           </div>
 
-          {/* 🌟 2. MOCKUP HÌNH ẢNH ĐÃ ĐƯỢC THAY BẰNG ẢNH THẬT "GHI ĐÈ" */}
+          {/* MOCKUP HÌNH ẢNH HERO */}
           <div className="order-1 lg:order-2 relative rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border border-slate-200 aspect-[4/3] sm:aspect-video bg-white flex items-center justify-center w-full group">
             {heroImage ? (
               <Image
-                src={heroImage} // Hiển thị ảnh "Ghi đè quyền" lộng lẫy
+                src={heroImage}
                 alt={`${product.title} - Giao diện chính`}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
-                priority // Ưu tiên load ảnh Hero
+                priority
               />
             ) : (
-              // Fallback (Dự phòng) nếu không có ảnh nào trong data
               <>
                 <div className="absolute inset-0 bg-slate-950 bg-gradient-to-br from-indigo-500/20 to-blue-600/20 opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500 rounded-full blur-[100px] opacity-20" />

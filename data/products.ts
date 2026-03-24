@@ -1,30 +1,37 @@
 // data/products.ts
-// FILE DATA CHUẨN ĐỂ PUBLIC BÁN HÀNG TRÊN NHATSOFT.COM
 
 export interface TechStack {
   name: string;
-  iconName: string; // Lưu tên icon (ví dụ của Lucide React)
+  iconName: string;
   color: string;
   bg: string;
 }
 
-// 🌟 UPDATE INTERFACE: Thêm featureImages để chứa 3 ảnh xịn của sếp
+// 🌟 UPDATE INTERFACE: Gộp chung Ảnh và Caption thành mảng visualShowcases
+export interface VisualShowcase {
+  imagePath: string;
+  title: string;
+  desc: string;
+  icon: string;
+  bgColor: string;
+}
+
 export interface Product {
   id: string;
   title: string;
   version: string;
   lastUpdate: string;
-  desc: string; // Mô tả ngắn ngoài trang chủ
-  fullDescription: string; // Mô tả dài trong trang chi tiết
+  desc: string;
+  fullDescription: string;
   categoryId: string;
   price: string;
   badge?: string;
   badgeColor?: string;
-  iconName: string; // Icon chính cho sản phẩm
+  iconName: string;
   techStack: TechStack[];
-  features: string[]; // Danh sách gạch đầu dòng tính năng
+  features: string[];
   demoUrl?: string;
-  featureImages?: string[]; // 🌟 Danh sách 3 ảnh screenshot xịn (slug path)
+  visualShowcases?: VisualShowcase[]; // 🌟 Dữ liệu động cho màn hình Showcase
 }
 
 export const CATEGORIES = [
@@ -37,9 +44,9 @@ export const CATEGORIES = [
 ];
 
 export const PRODUCTS: Product[] = [
-  // ================================================================
-  // 🏆 SIÊU PHẨM SỐ 1: NHATSOFT SAAS CORE ENGINE
-  // ================================================================
+  // ==========================================
+  // 1. SAAS CORE ENGINE
+  // ==========================================
   {
     id: "saas-core-engine",
     title: "NhatSoft SaaS Core Engine",
@@ -47,21 +54,36 @@ export const PRODUCTS: Product[] = [
     lastUpdate: "Tháng 3, 2026",
     desc: "Bộ mã nguồn nền tảng (Boilerplate) chuyên trị bài toán Multi-tenant, Sơ đồ tổ chức đa cấp và Ma trận phân quyền RBAC đỉnh cao.",
     fullDescription:
-      "Giải pháp hoàn hảo giúp Developer và Agency 'nhảy cóc' 2-3 tháng vật lộn với logic nền tảng phức tạp. NhatSoft Core cung cấp sẵn bộ khung quản lý Đa khách hàng (Multi-tenant), Quản lý Sơ đồ tổ chức không giới hạn cấp độ, và Ma trận phân quyền động (Dynamic RBAC). Nhờ Entity Framework Core, mã nguồn hỗ trợ linh hoạt chuyển đổi giữa SQL Server và PostgreSQL, MySQL chỉ với 1 thao tác cấu hình.",
+      "Giải pháp hoàn hảo giúp Developer và Agency 'nhảy cóc' 2-3 tháng vật lộn với logic nền tảng phức tạp. NhatSoft Core cung cấp sẵn bộ khung quản lý Đa khách hàng (Multi-tenant), Quản lý Sơ đồ tổ chức không giới hạn cấp độ, và Ma trận phân quyền động (Dynamic RBAC).",
     categoryId: "source",
     price: "Từ 2.500.000đ",
     badge: "Bán Chạy",
     badgeColor: "bg-rose-100 text-rose-700",
-    iconName: "ShieldCheck", // Icon bảo mật đẳng cấp
+    iconName: "ShieldCheck",
     demoUrl: "https://core.nhatsoft.com",
-
-    // 🌟 ỐP 3 TẤM ẢNH XỊN CỦA SẾP VÀO ĐÂY (Path slug chuẩn Next.js public folder)
-    featureImages: [
-      "/images/products/danh-sach-nhan-vien.png",
-      "/images/products/so-do-to-chuc-da-cap.png",
-      "/images/products/ghi-de-quyen-ngoai-le.png",
+    visualShowcases: [
+      {
+        imagePath: "/images/products/danh-sach-nhan-vien.png",
+        title: "Quản trị Nhân sự Tập trung & Trực quan",
+        desc: "Giao diện quản lý danh sách người dùng được tối ưu hóa. Dễ dàng theo dõi thông tin liên hệ, Vai trò (Role) và Trạng thái hoạt động.",
+        icon: "Users",
+        bgColor: "bg-blue-50",
+      },
+      {
+        imagePath: "/images/products/so-do-to-chuc-da-cap.png",
+        title: "Sơ đồ Tổ chức Linh hoạt Không giới hạn",
+        desc: "Cấu trúc dữ liệu Tree-view đệ quy cho phép thiết lập sơ đồ doanh nghiệp từ Tập đoàn, Chi nhánh, đến từng Phòng ban nhỏ nhất.",
+        icon: "GitFork",
+        bgColor: "bg-emerald-50",
+      },
+      {
+        imagePath: "/images/products/ghi-de-quyen-ngoai-le.png",
+        title: "Kiểm soát Tuyệt đối với Ma trận RBAC",
+        desc: "Cơ chế 'Ghi đè quyền' độc quyền. Trực quan hóa toàn bộ ma trận chức năng, cho phép bật/tắt chính xác từng hành động cho cá nhân.",
+        icon: "ShieldCheck",
+        bgColor: "bg-rose-50",
+      },
     ],
-
     techStack: [
       {
         name: ".NET 8 Web API",
@@ -82,7 +104,7 @@ export const PRODUCTS: Product[] = [
         bg: "bg-slate-100",
       },
       {
-        name: "SQL Server / PostgreSQL / MySQL",
+        name: "SQL Server / PostgreSQL",
         iconName: "Database",
         color: "text-emerald-600",
         bg: "bg-emerald-50",
@@ -90,43 +112,158 @@ export const PRODUCTS: Product[] = [
     ],
     features: [
       "Quản lý Đa khách hàng (Multi-Tenant) cách ly dữ liệu tuyệt đối theo TenantId.",
-      "Cấu trúc Sơ đồ tổ chức (Tree-view) đệ quy (Chi nhánh, Phòng ban) không giới hạn.",
+      "Cấu trúc Sơ đồ tổ chức (Tree-view) đệ quy không giới hạn.",
       "Ma trận phân quyền (Role Matrix) chi tiết 5 cấp độ (Access, Create, Edit, Delete, Export).",
-      "Tính năng Ghi đè quyền ngoại lệ (User Override) cho từng cá nhân xuất sắc.",
-      "Dynamic Sidebar - Giao diện tự động ẩn/hiện menu và điều hướng theo quyền User.",
-      "Cung cấp 2 gói License rõ ràng: Cá nhân (Single-Project) và Thương mại (Unlimited).",
+      "Ghi đè quyền ngoại lệ (User Override) cho từng cá nhân.",
+      "Dynamic Sidebar - Giao diện tự động ẩn/hiện menu theo quyền User.",
     ],
   },
 
-  // ================================================================
-  // 2. Các sản phẩm khác (để sếp tham khảo, giữ nguyên mô tả cũ )
-  // ================================================================
+  // ==========================================
+  // 2. HỆ THỐNG QUẢN LÝ SÂN BÓNG
+  // ==========================================
   {
     id: "pitch-management",
     title: "Hệ thống Quản lý Sân bóng Mini",
     version: "v2.1.0",
     lastUpdate: "Tháng 3, 2026",
     desc: "Giải pháp toàn diện đặt lịch, quản lý doanh thu và khách hàng. Xây dựng tối ưu với C#, .NET 8 và SQL Server.",
-    fullDescription: "...",
+    fullDescription:
+      "Giải pháp phần mềm quản lý sân bóng đá mini chuyên nghiệp. Tự động hóa quy trình đặt lịch (kéo thả trực quan), quản lý doanh thu, tính tiền dịch vụ (nước, bóng) và hệ thống báo cáo thống kê trực quan theo thời gian thực.",
     categoryId: "webapp",
     price: "Liên hệ",
-    badge: "Premium",
+    badge: "Hot",
+    badgeColor: "bg-green-100 text-green-700",
     iconName: "Layout",
-    techStack: [],
-    features: [],
+    demoUrl: "https://pitch.nhatsoft.com",
+    visualShowcases: [
+      {
+        imagePath: "/images/products/san-bong-lich-dat.png",
+        title: "Lưới Lịch Đặt Sân Trực Quan (Kéo/Thả)",
+        desc: "Quản lý hàng chục sân bóng trên một màn hình duy nhất. Hỗ trợ thao tác kéo thả để chuyển giờ, đổi sân cực kỳ nhanh chóng và chống trùng lịch tuyệt đối.",
+        icon: "CalendarDays",
+        bgColor: "bg-green-50",
+      },
+      {
+        imagePath: "/images/products/san-bong-pos.png",
+        title: "Quầy Thu Ngân (POS) & Bán Lẻ",
+        desc: "Tự động tính toán tiền giờ theo khung giờ vàng/giờ thường. Tích hợp quản lý kho nước uống, đồ thuê (áo, bóng) và in bill thanh toán chuyên nghiệp.",
+        icon: "ShoppingCart",
+        bgColor: "bg-blue-50",
+      },
+      {
+        imagePath: "/images/products/san-bong-bao-cao.png",
+        title: "Báo Cáo Doanh Thu Theo Thời Gian Thực",
+        desc: "Hệ thống Dashboard biểu đồ trực quan giúp chủ sân nắm bắt chính xác dòng tiền, công nợ khách quen và hiệu suất khai thác sân từng ngày.",
+        icon: "BarChart3",
+        bgColor: "bg-amber-50",
+      },
+    ],
+    techStack: [
+      {
+        name: ".NET 8 (Web API)",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "C# 12",
+        iconName: "Code2",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "SQL Server",
+        iconName: "Database",
+        color: "text-red-600",
+        bg: "bg-red-50",
+      },
+      {
+        name: "Next.js 14",
+        iconName: "Layout",
+        color: "text-slate-800",
+        bg: "bg-slate-100",
+      },
+    ],
+    features: [
+      "Quản lý lưới lịch đặt sân trực quan (Drag & Drop).",
+      "Hệ thống tính tiền tự động linh hoạt theo khung giờ.",
+      "Quản lý kho hàng hóa, dịch vụ đi kèm (Nước uống, cho thuê đồ).",
+      "Báo cáo doanh thu biểu đồ thời gian thực, chống thất thoát.",
+      "Tích hợp API thanh toán chuyển khoản, tạo mã QR động.",
+    ],
   },
+
+  // ==========================================
+  // 3. DỊCH VỤ OUTSOURCE WEB
+  // ==========================================
   {
     id: "outsource-web-dev",
-    title: "Dịch vụ Phát triển Web & Gia công Phần mềm",
+    title: "Dịch vụ Phát triển Web & Gia công",
     version: "2026",
     lastUpdate: "Liên tục",
     desc: "Nhận thiết kế website trọn gói. Từ Web giới thiệu/Landing Page nhanh gọn đến các hệ thống Web App, CRM phức tạp theo yêu cầu.",
-    fullDescription: "...",
+    fullDescription:
+      "Cung cấp giải pháp phần mềm may đo cho doanh nghiệp. Chúng tôi triển khai đa dạng công nghệ: từ WordPress tối ưu chi phí cho Web bán hàng, cho đến kiến trúc Next.js & .NET 8 Enterprise cho các hệ thống Quản trị, SaaS đa người dùng.",
     categoryId: "service",
     price: "Từ 3.000.000đ",
     badge: "Outsource",
-    iconName: "Layout",
-    techStack: [],
-    features: [],
+    badgeColor: "bg-orange-100 text-orange-700",
+    iconName: "Briefcase",
+    visualShowcases: [
+      {
+        imagePath: "/images/products/outsource-landing.png",
+        title: "Thiết Kế UI/UX Đẳng Cấp & Độc Bản",
+        desc: "Giao diện được thiết kế riêng biệt, phù hợp với nhận diện thương hiệu. Tối ưu hóa trải nghiệm người dùng (UX) để tăng tỷ lệ chuyển đổi mua hàng.",
+        icon: "LayoutTemplate",
+        bgColor: "bg-indigo-50",
+      },
+      {
+        imagePath: "/images/products/outsource-responsive.png",
+        title: "Tương Thích Mọi Thiết Bị (Responsive)",
+        desc: "Website hiển thị hoàn hảo và tốc độ tải trang siêu tốc trên mọi thiết bị: Mobile, Tablet, Desktop. Đạt chuẩn Core Web Vitals của Google.",
+        icon: "Smartphone",
+        bgColor: "bg-rose-50",
+      },
+      {
+        imagePath: "/images/products/outsource-cms.png",
+        title: "Hệ Quản Trị (CMS) Thân Thiện",
+        desc: "Bàn giao kèm hệ thống quản trị nội dung dễ sử dụng. Khách hàng có thể tự thay đổi bài viết, hình ảnh, sản phẩm mà không cần biết lập trình.",
+        icon: "Settings",
+        bgColor: "bg-slate-50",
+      },
+    ],
+    techStack: [
+      {
+        name: "Next.js & React",
+        iconName: "Code2",
+        color: "text-slate-800",
+        bg: "bg-slate-100",
+      },
+      {
+        name: ".NET 8 Backend",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "WordPress",
+        iconName: "Layout",
+        color: "text-blue-500",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "Tối ưu chuẩn SEO",
+        iconName: "Zap",
+        color: "text-amber-500",
+        bg: "bg-amber-50",
+      },
+    ],
+    features: [
+      "Tư vấn giải pháp và kiến trúc hệ thống miễn phí.",
+      "Thiết kế Landing Page, Web công ty, E-commerce tối ưu SEO.",
+      "Phát triển hệ thống Web App, SaaS phức tạp theo yêu cầu.",
+      "Bàn giao toàn bộ mã nguồn, bảo hành kỹ thuật 12 tháng.",
+    ],
   },
 ];

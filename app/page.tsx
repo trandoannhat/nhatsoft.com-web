@@ -213,12 +213,12 @@ export default function NhatSoftProductHome() {
                     href={`/products/${product.id}`}
                     className="group flex flex-col bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 h-full"
                   >
-                    {/* 🌟 2. PHẦN RENDER ẢNH SẢN PHẨM TRANG CHỦ */}
+                    {/* 🌟 2. PHẦN RENDER ẢNH SẢN PHẨM TRANG CHỦ (ĐÃ FIX LỖI TYPESCRIPT) */}
                     <div className="aspect-[16/10] bg-slate-50 relative overflow-hidden">
-                      {product.featureImages &&
-                      product.featureImages.length > 0 ? (
+                      {product.visualShowcases &&
+                      product.visualShowcases.length > 0 ? (
                         <Image
-                          src={product.featureImages[0]} // Ưu tiên ảnh số 1 làm ảnh bìa ngoài thẻ
+                          src={product.visualShowcases[0].imagePath} // Ưu tiên ảnh đầu tiên làm ảnh bìa
                           alt={product.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-700"
