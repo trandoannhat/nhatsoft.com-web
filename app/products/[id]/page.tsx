@@ -48,6 +48,14 @@ export async function generateMetadata({
     };
   }
 
+  // 🌟 FIX: Lấy ảnh đầu tiên của sản phẩm làm ảnh Open Graph (Thumbnail Zalo/FB)
+  // BẮT BUỘC phải nối thêm domain gốc vào để thành đường dẫn tuyệt đối
+  const baseUrl = "https://nhatsoft.com";
+  const ogImageUrl =
+    product.visualShowcases && product.visualShowcases.length > 0
+      ? `${baseUrl}${product.visualShowcases[0].imagePath}`
+      : `${baseUrl}/default-thumbnail.png`; // Ảnh fallback nếu không có ảnh
+
   return {
     title: product.title,
     description: product.desc,
@@ -55,6 +63,16 @@ export async function generateMetadata({
       title: product.title,
       description: product.desc,
       type: "article",
+      url: `${baseUrl}/products/${product.id}`,
+      // 🌟 FIX: Thêm mảng images vào đây để Zalo/Facebook lấy ảnh
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: product.title,
+        },
+      ],
     },
   };
 }
@@ -157,7 +175,6 @@ export default async function ProductDetail({
                 src={heroImage}
                 alt={`${product.title} - Giao diện chính`}
                 fill
-                // 🌟 FIX: Đã thêm scale-125 để triệt tiêu vùng trống và group-hover:scale-[1.35]
                 className="object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-700"
                 priority
               />
