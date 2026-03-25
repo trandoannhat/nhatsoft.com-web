@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next"; // BẮT BUỘC IMPORT METADATA
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
   CheckCircle2,
@@ -48,13 +48,11 @@ export async function generateMetadata({
     };
   }
 
-  // 🌟 FIX: Lấy ảnh đầu tiên của sản phẩm làm ảnh Open Graph (Thumbnail Zalo/FB)
-  // BẮT BUỘC phải nối thêm domain gốc vào để thành đường dẫn tuyệt đối
   const baseUrl = "https://nhatsoft.com";
   const ogImageUrl =
     product.visualShowcases && product.visualShowcases.length > 0
       ? `${baseUrl}${product.visualShowcases[0].imagePath}`
-      : `${baseUrl}/default-thumbnail.png`; // Ảnh fallback nếu không có ảnh
+      : `${baseUrl}/default-thumbnail.png`;
 
   return {
     title: product.title,
@@ -64,7 +62,6 @@ export async function generateMetadata({
       description: product.desc,
       type: "article",
       url: `${baseUrl}/products/${product.id}`,
-      // 🌟 FIX: Thêm mảng images vào đây để Zalo/Facebook lấy ảnh
       images: [
         {
           url: ogImageUrl,
@@ -89,13 +86,18 @@ export default async function ProductDetail({
     notFound();
   }
 
-  // 🌟 FIX LỖI TYPE: Sử dụng biến visualShowcases thay vì biến cũ featureImages
+  // ===== GIỮ NGUYÊN LOGIC LẤY ẢNH =====
   const heroImage =
     product.visualShowcases && product.visualShowcases.length >= 3
-      ? product.visualShowcases[2].imagePath // Ảnh Ghi đè xịn xò
+      ? product.visualShowcases[2].imagePath
       : product.visualShowcases && product.visualShowcases.length > 0
-        ? product.visualShowcases[0].imagePath // Ảnh fallback
-        : null; // Không có ảnh
+        ? product.visualShowcases[0].imagePath
+        : null;
+
+  // ===== CHỈ THÊM VERSION CACHE BUST =====
+  const heroImageWithVersion = heroImage
+    ? `${heroImage}?v=${product.version || 1}`
+    : null;
 
   return (
     <div className="bg-white text-slate-900 font-sans pb-24 w-full overflow-hidden selection:bg-indigo-100 selection:text-indigo-700">
@@ -170,9 +172,9 @@ export default async function ProductDetail({
 
           {/* MOCKUP HÌNH ẢNH HERO */}
           <div className="order-1 lg:order-2 relative rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border border-slate-200 aspect-[4/3] sm:aspect-video bg-white flex items-center justify-center w-full group">
-            {heroImage ? (
+            {heroImageWithVersion ? (
               <Image
-                src={heroImage}
+                src={heroImageWithVersion}
                 alt={`${product.title} - Giao diện chính`}
                 fill
                 className="object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-700"
@@ -202,7 +204,6 @@ export default async function ProductDetail({
 
         {/* THÔNG TIN KỸ THUẬT & BẢNG GIÁ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-          {/* CỘT TRÁI: CHI TIẾT TÍNH NĂNG */}
           <div className="lg:col-span-2 space-y-16">
             <section>
               <h2 className="text-3xl font-heading font-black text-slate-900 mb-8 flex items-center gap-3 tracking-tight">
@@ -256,7 +257,6 @@ export default async function ProductDetail({
             </section>
           </div>
 
-          {/* CỘT PHẢI: GỌI COMPONENT ACTION CARD */}
           <div className="lg:col-span-1">
             <ProductActionCard
               productName={product.title}
