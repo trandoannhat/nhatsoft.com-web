@@ -2,41 +2,45 @@ name: Deploy Nhatsoft Web
 
 on:
   push:
-    branches: ["master"] # hoặc "main" nếu nhánh chính là main
+    branches: ["master"]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Lấy code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2. Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
+      # 3. Cài deps + build trên GitHub (máy mạnh)
       - name: Install dependencies and Build
-        # Nhận biến môi trường từ GitHub Secrets nếu cần
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
         run: |
-          npm install
+          npm ci
           npm run build
 
+      # 4. Copy toàn bộ build + deps lên VPS
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_SSH_KEY }} # dùng SSH Key thay vì password
+          key: ${{ secrets.VPS_SSH_KEY }}
           port: 24700
-          source: ".next,public,package.json,package-lock.json,next.config.*"
+          source: ".next,public,node_modules,package.json,package-lock.json,next.config.*"
           target: "/var/www/nhatsoft.com"
           strip_components: 0
 
-      - name: Start PM2 on VPS
+      # 5. Reload PM2 (KHÔNG build lại, KHÔNG install)
+      - name: Start / Reload PM2 on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -44,13 +48,11 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 24700
           script: |
+            set -e
+
             cd /var/www/nhatsoft.com
 
-            # Cài các gói cần thiết cho production
-            npm install --production
-
-            # Khởi động hoặc reload PM2 process nhatsoft-web trên port 3004
+            # 🔥 Reload app với build mới
             PORT=3004 pm2 reload nhatsoft-web || PORT=3004 pm2 start npm --name "nhatsoft-web" -- start
 
-            # Lưu trạng thái PM2 để tự động bật lại khi VPS restart
             pm2 save
