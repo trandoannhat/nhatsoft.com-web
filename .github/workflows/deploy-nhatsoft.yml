@@ -9,15 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ✅ Checkout source code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # ✅ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # ✅ Build trên GitHub (VPS yếu)
+      # ✅ Install & build trên GitHub (VPS yếu)
       - name: Install dependencies and Build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
@@ -37,7 +39,7 @@ jobs:
           target: "/var/www/nhatsoft.com"
           strip_components: 0
 
-      # ✅ SSH vào VPS để install + reload PM2
+      # ✅ SSH vào VPS để start/reload PM2
       - name: Start / Reload PM2 on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -50,14 +52,11 @@ jobs:
 
             cd /var/www/nhatsoft.com
 
-            # Cài dependencies production
-            npm ci --production
+            # ✅ Chỉ cài production deps (KHÔNG build lại)
+            npm install --omit=dev
 
-            # 🔥 XÓA BUILD CŨ (QUAN TRỌNG)
-            rm -rf .next
-
-            # 🔥 Reload PM2 với build mới
+            # ✅ Reload PM2
             PORT=3004 pm2 reload nhatsoft-web || PORT=3004 pm2 start npm --name "nhatsoft-web" -- start
 
-            # Lưu trạng thái PM2
+            # ✅ Lưu trạng thái
             pm2 save
