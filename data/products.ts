@@ -44,25 +44,25 @@ export const CATEGORIES = [
 
 export const PRODUCTS: Product[] = [
   // ==========================================
-  // 1. NHATSOFT SPA - MỚI RA MẮT
+  // 1. NHATSOFT SPA - MÔ HÌNH SAAS CHO THUÊ
   // ==========================================
   {
     id: "nhatsoft-spa",
-    title: "NhatSoft Spa - Quản lý Tiệm Spa & Salon",
+    title: "NhatSoft Spa - Phần mềm Quản lý Tiệm Online",
     version: "v1.0.0",
     lastUpdate: "Tháng 4, 2026",
-    desc: "Tự động hóa xếp lịch hẹn, tính tiền nhanh chóng và quản lý hoa hồng KTV nhàn hạ ngay trên điện thoại.",
+    desc: "Phần mềm quản lý Spa trên nền tảng Cloud (SaaS). Không cần cài đặt, quản lý lịch hẹn và doanh thu ngay trên điện thoại.",
     fullDescription:
-      "Giải pháp phần mềm quản lý toàn diện dành cho các tiệm Spa, Salon, và Nail vừa và nhỏ. Tối giản hóa mọi thao tác từ đặt lịch, tính tiền, đến quản lý kỹ thuật viên. Xóa bỏ hoàn toàn nỗi lo trùng lịch hay sai sót khi cộng sổ tay bằng Excel.",
+      "Giải pháp phần mềm quản lý toàn diện theo mô hình Cho thuê dịch vụ (SaaS) dành cho các tiệm Spa, Salon và Nail. Chỉ với chi phí bằng một cốc cà phê mỗi ngày, tiệm của bạn đã được số hóa 100%. Không cần đầu tư hệ thống hay thuê Server tốn kém, dữ liệu của bạn được lưu trữ an toàn trên hệ thống đám mây của chúng tôi.",
     categoryId: "webapp",
-    price: "Từ 1.500.000đ", // Hoặc sếp có thể để "Dùng thử Miễn phí"
-    badge: "Mới ra mắt",
+    price: "Từ 199.000đ/tháng", // Nhấn mạnh giá thuê hàng tháng cực rẻ
+    badge: "Dùng thử 14 ngày", // Kích thích khách hàng dùng thử
     badgeColor: "bg-pink-100 text-pink-700",
     iconName: "Layout",
     demoUrl: "https://spa.nhatsoft.com",
     visualShowcases: [
       {
-        imagePath: "/images/products/spa-dashboard.png", // Sếp nhớ đổi tên ảnh cho khớp nhé
+        imagePath: "/images/products/spa-dashboard.png",
         title: "Báo Cáo Doanh Thu Real-time",
         desc: "Nắm bắt chính xác dòng tiền, số lượng khách, nhân viên đang làm việc chỉ bằng một cái liếc mắt trên Dashboard.",
         icon: "BarChart3",
@@ -78,43 +78,43 @@ export const PRODUCTS: Product[] = [
       {
         imagePath: "/images/products/spa-crm.png",
         title: "Quản lý KTV & Khách hàng",
-        desc: "Lưu trữ lịch sử sử dụng dịch vụ, ghi chú sở thích khách hàng. Chấm dứt cãi vã nhờ hệ thống tự động lưu vết hoa hồng KTV.",
+        desc: "Lưu trữ lịch sử dịch vụ, ghi chú khách hàng. Chấm dứt cãi vã nhờ hệ thống tự động tính hoa hồng KTV cực chuẩn xác.",
         icon: "Users",
         bgColor: "bg-emerald-50",
       },
     ],
     techStack: [
       {
-        name: ".NET 8 Web API",
+        name: "Cloud Hosting", // Đổi tên công nghệ sang hướng dịch vụ Cloud để khách dễ hiểu
         iconName: "Server",
         color: "text-purple-600",
         bg: "bg-purple-50",
       },
       {
-        name: "C# & EF Core",
-        iconName: "Code2",
+        name: "Multi-tenant Architecture",
+        iconName: "ShieldCheck",
         color: "text-blue-600",
         bg: "bg-blue-50",
       },
       {
-        name: "PostgreSQL",
+        name: "PostgreSQL Database",
         iconName: "Database",
         color: "text-emerald-600",
         bg: "bg-emerald-50",
       },
       {
-        name: "Next.js & Tailwind",
-        iconName: "Layout",
+        name: "Web & Mobile Responsive",
+        iconName: "Smartphone",
         color: "text-slate-800",
         bg: "bg-slate-100",
       },
     ],
     features: [
-      "Quản lý lịch hẹn trực quan (Calendar View) theo ngày/tuần.",
-      "Tính tiền nhanh chóng, cập nhật trạng thái In-progress/Completed.",
-      "Tự động tính toán doanh thu và hoa hồng kỹ thuật viên.",
-      "Hệ thống báo cáo biểu đồ 7 ngày và tính năng Xuất file Excel.",
-      "Kiến trúc Multi-tenant hiện đại, bảo mật và cách ly dữ liệu tuyệt đối.",
+      "☁️ Sử dụng ngay không cần cài đặt (Cloud-based SaaS).",
+      "💰 Chi phí siêu rẻ trả theo tháng, không tốn tiền bảo trì Server.",
+      "🔒 Tự động sao lưu dữ liệu hàng ngày, bảo mật chuẩn Enterprise.",
+      "🚀 Miễn phí nâng cấp tất cả tính năng mới trong suốt thời gian thuê.",
+      "📅 Tự động hóa xếp lịch hẹn, tính tiền và tính hoa hồng kỹ thuật viên.",
     ],
   },
   // ==========================================

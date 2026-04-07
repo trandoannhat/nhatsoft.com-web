@@ -149,15 +149,36 @@ export default async function ProductDetail({
 
             <div className="flex flex-wrap gap-4">
               {product.demoUrl ? (
-                <a
-                  href={product.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full sm:w-auto group"
-                >
-                  <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  Trải nghiệm Demo
-                </a>
+                <div className="flex flex-col gap-3 w-full sm:w-auto">
+                  <a
+                    href={product.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full group"
+                  >
+                    <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    Trải nghiệm Demo
+                  </a>
+
+                  {/*  HIỂN THỊ TÀI KHOẢN DEMO (Chỉ hiện nếu là NhatSoft Spa)  */}
+                  {product.id === "nhatsoft-spa" && (
+                    <div className="bg-indigo-50/80 border border-indigo-100 rounded-xl p-3 flex items-center justify-center gap-4 text-sm animate-fade-in">
+                      <span className="text-slate-600">
+                        TK:{" "}
+                        <strong className="text-indigo-700 select-all">
+                          spa_demo
+                        </strong>
+                      </span>
+                      <span className="w-1 h-1 bg-indigo-200 rounded-full"></span>
+                      <span className="text-slate-600">
+                        MK:{" "}
+                        <strong className="text-indigo-700 select-all">
+                          123456
+                        </strong>
+                      </span>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <a
                   href="tel:0937120121"
@@ -177,7 +198,7 @@ export default async function ProductDetail({
                 src={heroImageWithVersion}
                 alt={`${product.title} - Giao diện chính`}
                 fill
-                className="object-cover scale-125 group-hover:scale-[1.35] transition-transform duration-700"
+                className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 priority
               />
             ) : (
