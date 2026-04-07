@@ -86,18 +86,13 @@ export default async function ProductDetail({
     notFound();
   }
 
-  // ===== GIỮ NGUYÊN LOGIC LẤY ẢNH =====
+  // 👇 Đã xóa đoạn version Cache Bust gây vỡ ảnh
   const heroImage =
     product.visualShowcases && product.visualShowcases.length >= 3
       ? product.visualShowcases[2].imagePath
       : product.visualShowcases && product.visualShowcases.length > 0
         ? product.visualShowcases[0].imagePath
         : null;
-
-  // ===== CHỈ THÊM VERSION CACHE BUST =====
-  const heroImageWithVersion = heroImage
-    ? `${heroImage}?v=${product.version || 1}`
-    : null;
 
   return (
     <div className="bg-white text-slate-900 font-sans pb-24 w-full overflow-hidden selection:bg-indigo-100 selection:text-indigo-700">
@@ -160,7 +155,7 @@ export default async function ProductDetail({
                     Trải nghiệm Demo
                   </a>
 
-                  {/*  HIỂN THỊ TÀI KHOẢN DEMO (Chỉ hiện nếu là NhatSoft Spa)  */}
+                  {/* 👇 HIỂN THỊ TÀI KHOẢN DEMO (Chỉ hiện nếu là NhatSoft Spa) 👇 */}
                   {product.id === "nhatsoft-spa" && (
                     <div className="bg-indigo-50/80 border border-indigo-100 rounded-xl p-3 flex items-center justify-center gap-4 text-sm animate-fade-in">
                       <span className="text-slate-600">
@@ -181,7 +176,8 @@ export default async function ProductDetail({
                 </div>
               ) : (
                 <a
-                  href="tel:0937120121"
+                  // 👇 Đã cập nhật đúng số điện thoại của sếp
+                  href="tel:0907011886"
                   className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full sm:w-auto group"
                 >
                   <PhoneCall className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -192,13 +188,14 @@ export default async function ProductDetail({
           </div>
 
           {/* MOCKUP HÌNH ẢNH HERO */}
-          <div className="order-1 lg:order-2 relative rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border border-slate-200 aspect-[4/3] sm:aspect-video bg-white flex items-center justify-center w-full group">
-            {heroImageWithVersion ? (
+          <div className="order-1 lg:order-2 relative rounded-[2.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.15)] border border-slate-200 aspect-[4/3] sm:aspect-video bg-slate-50 flex items-center justify-center w-full group">
+            {heroImage ? (
               <Image
-                src={heroImageWithVersion}
+                src={heroImage}
                 alt={`${product.title} - Giao diện chính`}
                 fill
-                className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                // 👇 Đã đổi sang object-contain để ảnh luôn đầy đủ không bị cắt
+                className="object-contain p-4 sm:p-8 group-hover:scale-105 transition-transform duration-700"
                 priority
               />
             ) : (
