@@ -86,7 +86,7 @@ export default async function ProductDetail({
     notFound();
   }
 
-  // 👇 Đã xóa đoạn version Cache Bust gây vỡ ảnh
+  //  Đã xóa đoạn version Cache Bust gây vỡ ảnh
   const heroImage =
     product.visualShowcases && product.visualShowcases.length >= 3
       ? product.visualShowcases[2].imagePath
@@ -155,7 +155,7 @@ export default async function ProductDetail({
                     Trải nghiệm Demo
                   </a>
 
-                  {/* 👇 HIỂN THỊ TÀI KHOẢN DEMO (Chỉ hiện nếu là NhatSoft Spa) 👇 */}
+                  {/*  HIỂN THỊ TÀI KHOẢN DEMO (Chỉ hiện nếu là NhatSoft Spa)  */}
                   {product.id === "nhatsoft-spa" && (
                     <div className="bg-indigo-50/80 border border-indigo-100 rounded-xl p-3 flex items-center justify-center gap-4 text-sm animate-fade-in">
                       <span className="text-slate-600">
@@ -176,7 +176,7 @@ export default async function ProductDetail({
                 </div>
               ) : (
                 <a
-                  // 👇 Đã cập nhật đúng số điện thoại của sếp
+                  //  Đã cập nhật đúng số điện thoại của sếp
                   href="tel:0907011886"
                   className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-600 transition-all shadow-xl hover:shadow-indigo-200 active:scale-95 w-full sm:w-auto group"
                 >
@@ -194,8 +194,8 @@ export default async function ProductDetail({
                 src={heroImage}
                 alt={`${product.title} - Giao diện chính`}
                 fill
-                // 👇 Đã đổi sang object-contain để ảnh luôn đầy đủ không bị cắt
-                className="object-contain p-4 sm:p-8 group-hover:scale-105 transition-transform duration-700"
+                //  Đã xóa padding và đổi thành object-cover để ảnh bung full viền
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 priority
               />
             ) : (
