@@ -271,73 +271,83 @@ export const PRODUCTS: Product[] = [
   // ==========================================
   // 3. DỊCH VỤ OUTSOURCE WEB
   // ==========================================
+
+  // để đồng bộ với thietkeweb.nhatsoft.com
+
   {
     id: "outsource-web-dev",
-    title: "Dịch vụ Phát triển Web & Gia công",
+    title: "Thiết Kế Website Chuyên Nghiệp & Gia Công Web",
     version: "2026",
     lastUpdate: "Liên tục",
-    desc: "Nhận thiết kế website trọn gói. Từ Web giới thiệu/Landing Page nhanh gọn đến các hệ thống Web App, CRM phức tạp theo yêu cầu.",
+    desc: "Thiết kế website trọn gói chuẩn SEO, giao diện đẹp, tối ưu chuyển đổi. Từ Landing Page, Website doanh nghiệp đến Web App theo yêu cầu.",
     fullDescription:
-      "Cung cấp giải pháp phần mềm may đo cho doanh nghiệp. Chúng tôi triển khai đa dạng công nghệ: từ hệ sinh thái WordPress & MySQL tối ưu chi phí cho Web bán hàng, cho đến kiến trúc Next.js & .NET 8 Enterprise cho các hệ thống Quản trị, SaaS đa người dùng.",
+      "NhatSoft cung cấp dịch vụ thiết kế website và phát triển hệ thống web chuyên nghiệp cho doanh nghiệp. Từ website giới thiệu công ty, landing page bán hàng, website bất động sản, spa, sân bóng, cho đến CRM nội bộ, ERP mini và các hệ thống SaaS đa người dùng. Chúng tôi tối ưu cả giao diện, tốc độ tải trang, chuẩn SEO Google và khả năng mở rộng lâu dài cho doanh nghiệp.",
     categoryId: "service",
-    price: "Từ 3.000.000đ",
-    badge: "Outsource",
-    badgeColor: "bg-orange-100 text-orange-700",
+    price: "Từ 2.990.000đ",
+    badge: "Thiết Kế Web",
+    badgeColor: "bg-blue-100 text-blue-700",
     iconName: "Briefcase",
+
+    demoUrl: "https://thietkeweb.nhatsoft.com",
+
     visualShowcases: [
       {
         imagePath: "/images/products/outsource-landing.png",
-        title: "Thiết Kế UI/UX Đẳng Cấp & Độc Bản",
-        desc: "Giao diện được thiết kế riêng biệt, phù hợp với nhận diện thương hiệu. Tối ưu hóa trải nghiệm người dùng (UX) để tăng tỷ lệ chuyển đổi mua hàng.",
+        title: "Thiết Kế Giao Diện Chuẩn Chuyển Đổi",
+        desc: "Thiết kế UI/UX hiện đại, chuyên nghiệp, tối ưu trải nghiệm người dùng và tăng tỷ lệ chuyển đổi khách hàng.",
         icon: "LayoutTemplate",
         bgColor: "bg-indigo-50",
       },
       {
         imagePath: "/images/products/outsource-responsive.png",
-        title: "Tương Thích Mọi Thiết Bị (Responsive)",
-        desc: "Website hiển thị hoàn hảo và tốc độ tải trang siêu tốc trên mọi thiết bị: Mobile, Tablet, Desktop. Đạt chuẩn Core Web Vitals của Google.",
+        title: "Responsive Mobile Chuẩn Google",
+        desc: "Website hiển thị hoàn hảo trên điện thoại, tablet và desktop. Tối ưu tốc độ tải trang và chuẩn Core Web Vitals.",
         icon: "Smartphone",
         bgColor: "bg-rose-50",
       },
       {
         imagePath: "/images/products/outsource-cms.png",
-        title: "Hệ Quản Trị (CMS) Thân Thiện",
-        desc: "Bàn giao kèm hệ thống quản trị nội dung dễ sử dụng. Khách hàng có thể tự thay đổi bài viết, hình ảnh, sản phẩm mà không cần biết lập trình.",
+        title: "Quản Trị Nội Dung Dễ Sử Dụng",
+        desc: "Bàn giao hệ thống quản trị trực quan giúp khách hàng dễ dàng tự cập nhật bài viết, sản phẩm và nội dung website.",
         icon: "Settings",
         bgColor: "bg-slate-50",
       },
     ],
+
     techStack: [
       {
-        name: "Next.js & React", // Cho Web App phức tạp
-        iconName: "Code2",
-        color: "text-slate-800",
-        bg: "bg-slate-100",
-      },
-      {
-        name: ".NET 8 / Node.js", // Cho Backend phức tạp
-        iconName: "Server",
-        color: "text-purple-600",
-        bg: "bg-purple-50",
-      },
-      {
-        name: "WordPress & PHP", // 🌟 FIX: Đã thêm PHP
+        name: "WordPress & PHP",
         iconName: "Layout",
         color: "text-blue-500",
         bg: "bg-blue-50",
       },
       {
-        name: "MySQL / PostgreSQL", // 🌟 FIX: Đã thêm MySQL
+        name: "Next.js & React",
+        iconName: "Code2",
+        color: "text-slate-800",
+        bg: "bg-slate-100",
+      },
+      {
+        name: ".NET 8 / Node.js",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "MySQL / PostgreSQL",
         iconName: "Database",
         color: "text-emerald-500",
         bg: "bg-emerald-50",
       },
     ],
+
     features: [
-      "Tư vấn giải pháp và kiến trúc hệ thống miễn phí.",
-      "Thiết kế Landing Page, Web công ty, E-commerce tối ưu SEO.",
-      "Phát triển hệ thống Web App, SaaS phức tạp theo yêu cầu.",
-      "Bàn giao toàn bộ mã nguồn, bảo hành kỹ thuật 12 tháng.",
+      "Thiết kế website doanh nghiệp, landing page, web bán hàng chuẩn SEO.",
+      "Thiết kế website bất động sản, spa, salon, sân bóng, giáo dục, nội thất...",
+      "Phát triển CRM nội bộ, Web App quản trị, SaaS đa người dùng theo yêu cầu.",
+      "Tư vấn miễn phí giải pháp phù hợp với ngân sách doanh nghiệp.",
+      "Bàn giao toàn bộ source code, hosting/domain hỗ trợ đầy đủ.",
+      "Bảo hành kỹ thuật 12 tháng, hỗ trợ vận hành lâu dài.",
     ],
   },
 ];
