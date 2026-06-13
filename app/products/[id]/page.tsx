@@ -137,11 +137,42 @@ export default async function ProductDetail({
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-slate-900 mb-6 leading-[1.1] tracking-tighter">
               {product.title}
             </h1>
-
+            {product.id === "saas-core-engine" && (
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-700 font-semibold">
+                  🚀 Tiết kiệm 2-3 tháng phát triển cho mỗi dự án ERP, CRM, HRM
+                  hoặc SaaS Platform
+                </div>
+              </div>
+            )}
             <p className="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed font-medium">
               {product.fullDescription}
             </p>
+            {product.id === "saas-core-engine" && (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-black text-indigo-600">
+                    100+
+                  </div>
+                  <div className="text-xs text-slate-500">Permissions</div>
+                </div>
 
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-black text-indigo-600">15+</div>
+                  <div className="text-xs text-slate-500">Modules</div>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-black text-indigo-600">∞</div>
+                  <div className="text-xs text-slate-500">Tenants</div>
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center shadow-sm">
+                  <div className="text-2xl font-black text-indigo-600">DDD</div>
+                  <div className="text-xs text-slate-500">Architecture</div>
+                </div>
+              </div>
+            )}
             <div className="flex flex-wrap gap-4">
               {product.demoUrl ? (
                 <div className="flex flex-col gap-3 w-full sm:w-auto">
@@ -185,6 +216,15 @@ export default async function ProductDetail({
                 </a>
               )}
             </div>
+            {product.id === "saas-core-engine" && (
+              <div className="mt-6 rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
+                <p className="text-sm text-emerald-700 font-medium leading-relaxed">
+                  ✓ Đã tích hợp sẵn Multi-Tenant, Dynamic RBAC, ACL, JWT
+                  Authentication, Audit Log, ASP.NET Core Identity, DDD, Clean
+                  Architecture, Repository Pattern và Unit Of Work.
+                </p>
+              </div>
+            )}
           </div>
 
           {/* MOCKUP HÌNH ẢNH HERO */}
@@ -218,11 +258,69 @@ export default async function ProductDetail({
         {/* SHOWCASE ẢNH XEN KẼ */}
         <div className="mb-24">
           <ProductVisualShowcase product={product} />
+          {product.id === "saas-core-engine" && (
+            <section className="mt-16">
+              <h2 className="text-3xl font-heading font-black text-slate-900 mb-8">
+                Phù hợp cho
+              </h2>
+
+              <div className="flex flex-wrap gap-3">
+                {[
+                  "ERP",
+                  "CRM",
+                  "HRM",
+                  "Hotel Management",
+                  "Workflow",
+                  "E-Office",
+                  "Asset Management",
+                  "School Management",
+                  "SaaS Platform",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-semibold"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {/* THÔNG TIN KỸ THUẬT & BẢNG GIÁ */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
           <div className="lg:col-span-2 space-y-16">
+            {product.id === "saas-core-engine" && (
+              <section className="mb-16">
+                <h2 className="text-3xl font-heading font-black text-slate-900 mb-8">
+                  Vì sao chọn SaaS Core Engine?
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Tiết kiệm 2-3 tháng xây dựng nền tảng cho mỗi dự án.",
+                    "Sẵn sàng cho ERP, CRM, HRM và SaaS Platform.",
+                    "RBAC + ACL + Multi-Tenant tích hợp sẵn.",
+                    "Dễ dàng mở rộng và thương mại hóa.",
+                    "Kiến trúc DDD và Clean Architecture.",
+                    "Tập trung phát triển nghiệp vụ thay vì hạ tầng kỹ thuật.",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="bg-indigo-50 border border-indigo-100 rounded-2xl p-5"
+                    >
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-indigo-600 mt-0.5" />
+                        <span className="font-medium text-slate-700">
+                          {item}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
             <section>
               <h2 className="text-3xl font-heading font-black text-slate-900 mb-8 flex items-center gap-3 tracking-tight">
                 <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">

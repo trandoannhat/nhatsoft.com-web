@@ -122,41 +122,54 @@ export const PRODUCTS: Product[] = [
   // ==========================================
   {
     id: "saas-core-engine",
+
     title: "NhatSoft SaaS Core Engine",
+
     version: "v1.0.0",
-    lastUpdate: "Tháng 3, 2026",
-    desc: "Bộ mã nguồn nền tảng (Boilerplate) chuyên trị bài toán Multi-tenant, Sơ đồ tổ chức đa cấp và Ma trận phân quyền RBAC đỉnh cao.",
+
+    lastUpdate: "Tháng 6, 2026",
+
+    desc: "Nền tảng Backend + Frontend dành cho ERP, CRM, HRM và các hệ thống SaaS doanh nghiệp. Xây dựng một lần, tái sử dụng cho nhiều dự án.",
+
     fullDescription:
-      "Giải pháp hoàn hảo giúp Developer và Agency 'nhảy cóc' 2-3 tháng vật lộn với logic nền tảng phức tạp. NhatSoft Core cung cấp sẵn bộ khung quản lý Đa khách hàng (Multi-tenant), Quản lý Sơ đồ tổ chức không giới hạn cấp độ, và Ma trận phân quyền động (Dynamic RBAC).",
+      "NhatSoft SaaS Core Engine là nền tảng phát triển ứng dụng doanh nghiệp được xây dựng trên .NET 8 Web API, Next.js và Domain-Driven Design (DDD). Hệ thống tích hợp sẵn Multi-Tenant, Dynamic RBAC, ACL, JWT Authentication, Audit Log, Dynamic Menu Permission và các thành phần cốt lõi thường mất nhiều tháng để phát triển. Giúp Software House, Startup, Freelancer và Doanh nghiệp tập trung vào nghiệp vụ thay vì xây dựng lại nền tảng cho mỗi dự án mới.",
+
     categoryId: "source",
-    price: "Từ 2.500.000đ",
-    badge: "Bán Chạy",
-    badgeColor: "bg-rose-100 text-rose-700",
+
+    price: "Liên hệ",
+
+    badge: "Enterprise Ready",
+
+    badgeColor: "bg-blue-100 text-blue-700",
+
     iconName: "ShieldCheck",
+
     demoUrl: "https://core.nhatsoft.com",
+
     visualShowcases: [
       {
         imagePath: "/images/products/danh-sach-nhan-vien.png",
-        title: "Quản trị Nhân sự Tập trung & Trực quan",
-        desc: "Giao diện quản lý danh sách người dùng được tối ưu hóa. Dễ dàng theo dõi thông tin liên hệ, Vai trò (Role) và Trạng thái hoạt động.",
+        title: "Quản lý Người dùng & Vai trò",
+        desc: "Quản trị tập trung tài khoản, vai trò và trạng thái hoạt động. Hỗ trợ nhiều Tenant trên cùng một hệ thống với khả năng phân quyền linh hoạt.",
         icon: "Users",
         bgColor: "bg-blue-50",
       },
       {
         imagePath: "/images/products/so-do-to-chuc-da-cap.png",
-        title: "Sơ đồ Tổ chức Linh hoạt Không giới hạn",
-        desc: "Cấu trúc dữ liệu Tree-view đệ quy cho phép thiết lập sơ đồ doanh nghiệp từ Tập đoàn, Chi nhánh, đến từng Phòng ban nhỏ nhất.",
+        title: "Sơ đồ Tổ chức Đa cấp",
+        desc: "Mô hình tổ chức dạng cây không giới hạn cấp độ, phù hợp cho doanh nghiệp, tập đoàn, cơ quan nhà nước và hệ thống đa chi nhánh.",
         icon: "GitFork",
         bgColor: "bg-emerald-50",
       },
       {
         imagePath: "/images/products/ghi-de-quyen-ngoai-le.png",
-        title: "Kiểm soát Tuyệt đối với Ma trận RBAC",
-        desc: "Cơ chế 'Ghi đè quyền' độc quyền. Trực quan hóa toàn bộ ma trận chức năng, cho phép bật/tắt chính xác từng hành động cho cá nhân.",
+        title: "Dynamic RBAC & ACL",
+        desc: "Quản lý Permission, Role và quyền cá nhân (ACL). Hỗ trợ ghi đè quyền ngoại lệ và menu động theo từng người dùng.",
         icon: "ShieldCheck",
         bgColor: "bg-rose-50",
       },
     ],
+
     techStack: [
       {
         name: ".NET 8 Web API",
@@ -165,16 +178,22 @@ export const PRODUCTS: Product[] = [
         bg: "bg-purple-50",
       },
       {
-        name: "C# & EF Core",
+        name: "Next.js 15",
+        iconName: "Layout",
+        color: "text-slate-700",
+        bg: "bg-slate-100",
+      },
+      {
+        name: "Clean Architecture",
+        iconName: "Layers",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
+      },
+      {
+        name: "DDD + EF Core",
         iconName: "Code2",
         color: "text-blue-600",
         bg: "bg-blue-50",
-      },
-      {
-        name: "Next.js & React",
-        iconName: "Layout",
-        color: "text-slate-800",
-        bg: "bg-slate-100",
       },
       {
         name: "SQL Server / PostgreSQL",
@@ -183,12 +202,27 @@ export const PRODUCTS: Product[] = [
         bg: "bg-emerald-50",
       },
     ],
+
     features: [
-      "Quản lý Đa khách hàng (Multi-Tenant) cách ly dữ liệu tuyệt đối theo TenantId.",
-      "Cấu trúc Sơ đồ tổ chức (Tree-view) đệ quy không giới hạn.",
-      "Ma trận phân quyền (Role Matrix) chi tiết 5 cấp độ (Access, Create, Edit, Delete, Export).",
-      "Ghi đè quyền ngoại lệ (User Override) cho từng cá nhân.",
-      "Dynamic Sidebar - Giao diện tự động ẩn/hiện menu theo quyền User.",
+      "Multi-Tenant: Cô lập dữ liệu tuyệt đối giữa các Tenant.",
+      "Dynamic RBAC: Permission, Role và Menu động.",
+      "ACL (Access Control List) cho từng người dùng.",
+      "JWT Authentication + Refresh Token.",
+      "ASP.NET Core Identity tích hợp sẵn.",
+      "Audit Log tự động bằng EF Core Interceptor.",
+      "Seed Permission tự động từ source code.",
+      "Dynamic Sidebar và Menu Permission theo quyền.",
+      "Sơ đồ tổ chức đa cấp không giới hạn.",
+      "Repository Pattern + Unit Of Work.",
+      "Clean Architecture + Domain Driven Design (DDD).",
+      "Soft Delete, CreatedBy, UpdatedBy.",
+      "API Versioning.",
+      "Swagger/OpenAPI.",
+      "Hỗ trợ SQL Server và PostgreSQL.",
+      "Frontend quản trị hiện đại với Next.js + React.",
+      "Giao diện Responsive cho Desktop, Tablet và Mobile.",
+      "Sẵn sàng cho ERP, CRM, HRM, Hotel, Workflow và E-Office.",
+      "Tiết kiệm 2-3 tháng xây dựng nền tảng cho mỗi dự án.",
     ],
   },
 
@@ -292,25 +326,25 @@ export const PRODUCTS: Product[] = [
 
     visualShowcases: [
       {
-        imagePath: "/images/products/outsource-landing.png",
-        title: "Thiết Kế Giao Diện Chuẩn Chuyển Đổi",
-        desc: "Thiết kế UI/UX hiện đại, chuyên nghiệp, tối ưu trải nghiệm người dùng và tăng tỷ lệ chuyển đổi khách hàng.",
-        icon: "LayoutTemplate",
-        bgColor: "bg-indigo-50",
+        imagePath: "/images/products/web-company-homepage.png",
+        title: "Website Doanh Nghiệp Chuyên Nghiệp",
+        desc: "Giao diện hiện đại, tăng uy tín thương hiệu và tối ưu chuyển đổi khách hàng ngay từ trang chủ.",
+        icon: "Monitor",
+        bgColor: "bg-blue-50",
       },
       {
-        imagePath: "/images/products/outsource-responsive.png",
-        title: "Responsive Mobile Chuẩn Google",
-        desc: "Website hiển thị hoàn hảo trên điện thoại, tablet và desktop. Tối ưu tốc độ tải trang và chuẩn Core Web Vitals.",
+        imagePath: "/images/products/landing-page-conversion.png",
+        title: "Landing Page Tối Ưu Chuyển Đổi",
+        desc: "Thiết kế landing page bán hàng mạnh mẽ, tối ưu CTA, form đăng ký và tỷ lệ chốt đơn.",
+        icon: "MousePointerClick",
+        bgColor: "bg-amber-50",
+      },
+      {
+        imagePath: "/images/products/mobile-responsive-real.png",
+        title: "Hiển Thị Hoàn Hảo Trên Mobile",
+        desc: "Responsive chuẩn Google giúp website đẹp trên mọi thiết bị và cải thiện SEO vượt trội.",
         icon: "Smartphone",
-        bgColor: "bg-rose-50",
-      },
-      {
-        imagePath: "/images/products/outsource-cms.png",
-        title: "Quản Trị Nội Dung Dễ Sử Dụng",
-        desc: "Bàn giao hệ thống quản trị trực quan giúp khách hàng dễ dàng tự cập nhật bài viết, sản phẩm và nội dung website.",
-        icon: "Settings",
-        bgColor: "bg-slate-50",
+        bgColor: "bg-emerald-50",
       },
     ],
 
