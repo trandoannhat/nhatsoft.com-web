@@ -44,6 +44,145 @@ export const CATEGORIES = [
 
 export const PRODUCTS: Product[] = [
   // ==========================================
+  // MODULE: QUẢN LÝ NGÂN SÁCH XÃ/PHƯỜNG
+  // ==========================================
+  {
+    id: "budget-management",
+    title: "NhatSoft Budget - Quản lý Ngân sách Xã/Phường",
+    version: "v1.0.0",
+    lastUpdate: "Tháng 6, 2026",
+    desc: "Trợ lý số hóa giải ma trận tài chính công. Tự động kiểm soát thu chi, phân bổ dự toán và loại bỏ hoàn toàn rủi ro xuất toán.",
+    fullDescription:
+      "Quản lý ngân sách nhà nước tại cấp Xã/Phường luôn là bài toán áp lực với hàng chục tỷ đồng và hàng trăm tiểu mục đan chéo. Kế toán thường xuyên đối mặt với 'ma trận' Excel, rủi ro nhân đôi số liệu hoặc chi vượt nguồn kinh phí. NhatSoft Budget Management ra đời như một 'chốt chặn' an toàn tuyệt đối: giám sát chặt chẽ vòng đời dòng tiền, tự động hóa đối soát và kết xuất báo cáo chuẩn Thông tư chỉ với một cú click.",
+    categoryId: "webapp",
+    price: "Liên hệ",
+    badge: "Mới ra mắt",
+    badgeColor: "bg-blue-100 text-blue-700",
+    iconName: "PieChart",
+    demoUrl: "https://app.nhatsoft.com/register",
+    visualShowcases: [
+      {
+        imagePath: "/images/products/budget-allocation.png",
+        title: "Phân bổ Dự toán thông minh",
+        desc: "Khởi tạo từ Quyết định mẹ, linh hoạt 'chẻ nhỏ' túi kinh phí xuống từng đơn vị, tiểu mục. Thuật toán tự động giám sát, đảm bảo không một đồng nào phân bổ sai mục đích.",
+        icon: "Network",
+        bgColor: "bg-blue-50",
+      },
+      {
+        imagePath: "/images/products/budget-revenue.png",
+        title: "Bóc tách Thực thu 'Bọc thép'",
+        desc: "Nhận diện dữ liệu Excel thông minh, tự động triệt tiêu lỗi cộng gộp trùng lặp giữa dòng cha - dòng con và sinh Quyết định bổ sung khi có biến động.",
+        icon: "FileSpreadsheet",
+        bgColor: "bg-emerald-50",
+      },
+      {
+        imagePath: "/images/products/budget-control.png",
+        title: "Chốt chặn Kiểm soát Chi",
+        desc: "Khi lập Giấy rút dự toán/UNC, hệ thống rà soát số dư thực tế theo thời gian thực. Tự động cảnh báo và chặn đứng giao dịch nếu vượt mức, miễn nhiễm rủi ro chi lố.",
+        icon: "ShieldAlert",
+        bgColor: "bg-rose-50",
+      },
+    ],
+    techStack: [
+      {
+        name: ".NET 8 Web API",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "Next.js 15",
+        iconName: "Layout",
+        color: "text-slate-700",
+        bg: "bg-slate-100",
+      },
+      {
+        name: "PostgreSQL",
+        iconName: "Database",
+        color: "text-emerald-600",
+        bg: "bg-emerald-50",
+      },
+    ],
+    features: [
+      "Quản trị Danh mục: Tự động sao chép mục lục ngân sách sang năm tài chính mới.",
+      "Phân bổ Dự toán: Giám sát chặt chẽ nghiệp vụ điều chỉnh, điều chuyển trong năm.",
+      "Tiến độ Thu: Tự động cộng dồn lũy kế và tính tỷ lệ % hoàn thành so với dự toán.",
+      "Kiểm soát Chi: Chặn đứng giao dịch sai nguồn, vượt tổng mức kinh phí.",
+      "⏳ Sắp ra mắt: Quản lý Quỹ & Tự động đối chiếu Kho bạc (Mẫu 01a/ĐC, 02a/ĐC).",
+      "⏳ Sắp ra mắt: Quyết toán Ngân sách & Chốt sổ kết dư cuối năm.",
+      "⏳ Sắp ra mắt: Báo cáo chuẩn Thông tư 344/2016/TT-BTC (Sổ cái, Nhật ký thu/chi).",
+    ],
+  },
+  // ==========================================
+  // MODULE: QUẢN LÝ KHO THÔNG MINH
+  // ==========================================
+  {
+    id: "inventory-management",
+    title: "NhatSoft - Phân hệ Quản lý Kho Thông Minh",
+    version: "v1.0.0",
+    lastUpdate: "Tháng 8, 2026",
+    desc: "Tự động tính giá vốn FIFO, nhập liệu siêu tốc và chống xuất âm. Giải pháp giải phóng nhân viên kho khỏi thao tác rườm rà.",
+    fullDescription:
+      "Quản lý kho chưa bao giờ là bài toán dễ dàng với các doanh nghiệp: nhập liệu tốn thời gian, sai lệch giá vốn, hay các mẫu in chứng từ quá cứng nhắc. Hiểu được những 'nỗi đau' đó, NhatSoft tự hào giới thiệu Phân hệ Quản lý Kho hoàn toàn mới – mảnh ghép hoàn hảo cho hệ thống ERP của bạn. Hệ thống giúp bạn biết chính xác trong kho còn bao nhiêu hàng, đồng thời tối ưu hóa toàn bộ luồng công việc của nhân sự.",
+    categoryId: "webapp",
+    price: "Liên hệ",
+    badge: "Mới ra mắt",
+    badgeColor: "bg-rose-100 text-rose-700",
+    iconName: "Box",
+    demoUrl: "https://app.nhatsoft.com/register",
+    visualShowcases: [
+      {
+        imagePath: "/images/products/inventory-dashboard.png", // Bạn cần chuẩn bị ảnh này
+        title: "Trải nghiệm nhập liệu Siêu tốc",
+        desc: "Tích hợp Quick Create (tạo nhanh vật tư tại chỗ), tìm kiếm thông minh hàng ngàn mã không độ trễ, và thao tác hoàn toàn bằng phím tắt (F2) giúp kế toán nhập liệu thoăn thoắt.",
+        icon: "Zap",
+        bgColor: "bg-amber-50",
+      },
+      {
+        imagePath: "/images/products/inventory-fifo.png",
+        title: "Lõi thuật toán Giá vốn (FIFO)",
+        desc: "Tự động dò tìm lô hàng cũ nhất để trừ tồn và áp giá vốn. Hệ thống thông minh tự động hoàn trả tồn kho vào đúng lô nhập ban đầu nếu xóa/sửa Phiếu xuất.",
+        icon: "Calculator",
+        bgColor: "bg-emerald-50",
+      },
+      {
+        imagePath: "/images/products/inventory-print.png",
+        title: "Mẫu in Chứng từ linh hoạt",
+        desc: "Tùy biến mẫu in C30-HD, C31-HD sát với thực tế. Tự động quét và tổng hợp các số hóa đơn gốc thành một dải số gọn gàng ở phần Chứng từ kèm theo.",
+        icon: "Printer",
+        bgColor: "bg-indigo-50",
+      },
+    ],
+    techStack: [
+      {
+        name: ".NET 8 Web API",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "Next.js 15",
+        iconName: "Layout",
+        color: "text-slate-700",
+        bg: "bg-slate-100",
+      },
+      {
+        name: "PostgreSQL",
+        iconName: "Database",
+        color: "text-emerald-600",
+        bg: "bg-emerald-50",
+      },
+    ],
+    features: [
+      "Khai báo nhanh tại chỗ (Quick Create) không làm mất dữ liệu đang nhập dở.",
+      "Hỗ trợ Import Excel hàng nghìn dòng phiếu nhập/xuất trong vài giây.",
+      "Tuân thủ tuyệt đối nguyên tắc FIFO (Nhập trước - Xuất trước).",
+      "Ngăn chặn tuyệt đối việc xuất kho khi không đủ tồn (Chống xuất âm).",
+      "Khóa an toàn: Không cho phép xóa Phiếu Nhập nếu hàng đã được bán.",
+      "Bổ sung trường thông tin thực tế: 'Bộ phận giao/nhận', 'Số hóa đơn gốc'.",
+    ],
+  },
+  // ==========================================
   // 1. NHATSOFT SPA - MÔ HÌNH SAAS CHO THUÊ
   // ==========================================
   {
@@ -322,7 +461,7 @@ export const PRODUCTS: Product[] = [
     badgeColor: "bg-blue-100 text-blue-700",
     iconName: "Briefcase",
 
-    demoUrl: "https://thietkeweb.nhatsoft.com",
+    demoUrl: "https://nhatdev.top",
 
     visualShowcases: [
       {
@@ -382,6 +521,107 @@ export const PRODUCTS: Product[] = [
       "Tư vấn miễn phí giải pháp phù hợp với ngân sách doanh nghiệp.",
       "Bàn giao toàn bộ source code, hosting/domain hỗ trợ đầy đủ.",
       "Bảo hành kỹ thuật 12 tháng, hỗ trợ vận hành lâu dài.",
+    ],
+  },
+  // ==========================================
+  // NHATSOFT HRM - QUẢN LÝ NHÂN SỰ
+  // ==========================================
+  {
+    id: "nhatsoft-hrm",
+    title: "NhatSoft HRM - Phần mềm Quản lý Nhân sự",
+    version: "MVP",
+    lastUpdate: "Tháng 6, 2026",
+
+    desc: "Phần mềm quản lý nhân sự tập trung dành cho doanh nghiệp: hồ sơ nhân viên, chấm công, nghỉ phép, đơn chờ duyệt và dashboard tổng quan.",
+
+    fullDescription:
+      "NhatSoft HRM là giải pháp quản lý nhân sự trên nền tảng web, giúp doanh nghiệp tập trung dữ liệu nhân viên, theo dõi chấm công, quản lý nghỉ phép và nắm bắt tình hình nhân sự hằng ngày. Hệ thống được thiết kế theo hướng đơn giản, dễ sử dụng và sẵn sàng mở rộng theo nhu cầu vận hành của doanh nghiệp.",
+
+    categoryId: "webapp",
+
+    price: "Đăng ký dùng thử",
+    badge: "Dùng thử miễn phí",
+    badgeColor: "bg-indigo-100 text-indigo-700",
+
+    iconName: "Users",
+
+    // Link này sẽ hiển thị nút “Trải nghiệm Demo”
+    demoUrl: "https://app.nhatsoft.com/register",
+
+    visualShowcases: [
+      {
+        imagePath: "/images/products/hrm-dashboard.png",
+        title: "Tổng quan nhân sự trực quan",
+        desc: "Theo dõi nhanh tổng số nhân sự, nhân viên thử việc, đơn chờ duyệt, nhân viên nghỉ trong ngày, cơ cấu phòng ban và sinh nhật nhân viên trong tháng.",
+        icon: "BarChart3",
+        bgColor: "bg-indigo-50",
+      },
+      {
+        imagePath: "/images/products/hrm-employee-profile.png",
+        title: "Quản lý hồ sơ nhân viên",
+        desc: "Lưu trữ và tra cứu thông tin nhân sự tập trung: thông tin liên hệ, phòng ban, vị trí công việc và trạng thái làm việc.",
+        icon: "Users",
+        bgColor: "bg-emerald-50",
+      },
+      {
+        imagePath: "/images/products/hrm-leave-management.png",
+        title: "Chấm công và quản lý nghỉ phép",
+        desc: "Hỗ trợ theo dõi chấm công, tạo đơn xin nghỉ và quản lý các yêu cầu đang chờ duyệt trên cùng một hệ thống.",
+        icon: "CalendarDays",
+        bgColor: "bg-rose-50",
+      },
+    ],
+
+    techStack: [
+      {
+        name: ".NET 8 Web API",
+        iconName: "Server",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        name: "Angular",
+        iconName: "Layout",
+        color: "text-red-600",
+        bg: "bg-red-50",
+      },
+      {
+        name: "JWT Authentication",
+        iconName: "ShieldCheck",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        name: "MySQL Database",
+        iconName: "Database",
+        color: "text-emerald-600",
+        bg: "bg-emerald-50",
+      },
+      {
+        name: "Cloud SaaS",
+        iconName: "Server",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
+      },
+      {
+        name: "Responsive Web",
+        iconName: "Smartphone",
+        color: "text-slate-700",
+        bg: "bg-slate-100",
+      },
+    ],
+
+    features: [
+      "Dashboard tổng quan nhân sự: tổng nhân sự, thử việc, đơn chờ duyệt và nghỉ hôm nay.",
+      "Quản lý hồ sơ nhân viên tập trung, dễ tìm kiếm và cập nhật.",
+      "Theo dõi cơ cấu nhân sự theo phòng ban.",
+      "Quản lý chấm công nhân viên trên hệ thống.",
+      "Tạo và theo dõi đơn xin nghỉ phép.",
+      "Danh sách đơn nghỉ chờ duyệt dành cho quản lý hoặc bộ phận nhân sự.",
+      "Theo dõi sinh nhật nhân viên trong tháng.",
+      "Quản lý gói dịch vụ và nâng cấp theo nhu cầu sử dụng.",
+      "Giao diện hiện đại, hỗ trợ tốt trên máy tính và thiết bị di động.",
+      "Nền tảng sẵn sàng mở rộng thêm tính lương, hợp đồng, phân quyền và báo cáo nhân sự.",
     ],
   },
 ];

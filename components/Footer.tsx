@@ -8,44 +8,43 @@ import {
   Github,
   Facebook,
   Globe,
-  ArrowRight,
 } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 pt-20 pb-10">
+    <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100">
-                <Zap className="text-white w-5 h-5" />
+              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
+                <Zap className="text-white w-4 h-4" />
               </div>
-              <span className="text-2xl font-black text-slate-900 tracking-tighter">
+              <span className="text-xl font-bold text-slate-900 tracking-tight">
                 Nhat<span className="text-indigo-600">Soft</span>
               </span>
             </Link>
-            <p className="text-slate-500 text-sm leading-relaxed font-medium">
+            <p className="text-slate-500 text-sm leading-relaxed">
               Kiến tạo tương lai số bằng những sản phẩm phần mềm đóng gói chuẩn
-              Enterprise, tối ưu vận hành và bảo mật tuyệt đối.
+              Enterprise. Tối ưu vận hành, bảo mật tuyệt đối.
             </p>
             <div className="flex gap-3">
               {[
-                { icon: <Facebook className="w-5 h-5" />, href: "#" },
+                { icon: <Facebook className="w-4 h-4" />, href: "#" },
                 {
-                  icon: <Github className="w-5 h-5" />,
+                  icon: <Github className="w-4 h-4" />,
                   href: "https://github.com/doannhatit",
                 },
                 {
-                  icon: <Globe className="w-5 h-5" />,
+                  icon: <Globe className="w-4 h-4" />,
                   href: "https://nhatdev.top",
                 },
               ].map((social, i) => (
                 <a
                   key={i}
                   href={social.href}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-400 hover:text-indigo-600 hover:border-indigo-200 hover:shadow-sm transition-all"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-50 border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-200 hover:bg-indigo-50 transition-colors"
                 >
                   {social.icon}
                 </a>
@@ -55,10 +54,10 @@ export default function Footer() {
 
           {/* Solutions Column */}
           <div>
-            <h3 className="font-black text-slate-900 mb-6 uppercase text-xs tracking-[0.2em]">
+            <h3 className="font-semibold text-slate-900 mb-5 text-sm uppercase tracking-wider">
               Sản phẩm chủ lực
             </h3>
-            <ul className="space-y-4 text-sm font-bold text-slate-500">
+            <ul className="space-y-3 text-sm text-slate-500">
               {[
                 "Hệ thống Quản trị CRM",
                 "Nền tảng Ecommerce",
@@ -68,9 +67,8 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     href="#"
-                    className="hover:text-indigo-600 transition-colors flex items-center gap-2 group"
+                    className="hover:text-indigo-600 transition-colors"
                   >
-                    <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -ml-5 group-hover:ml-0 transition-all" />
                     {item}
                   </Link>
                 </li>
@@ -80,10 +78,10 @@ export default function Footer() {
 
           {/* Support Column */}
           <div>
-            <h3 className="font-black text-slate-900 mb-6 uppercase text-xs tracking-[0.2em]">
+            <h3 className="font-semibold text-slate-900 mb-5 text-sm uppercase tracking-wider">
               Hỗ trợ khách hàng
             </h3>
-            <ul className="space-y-4 text-sm font-bold text-slate-500">
+            <ul className="space-y-3 text-sm text-slate-500">
               {[
                 "Tài liệu hướng dẫn",
                 "Chính sách bảo hành",
@@ -93,7 +91,7 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     href="#"
-                    className="hover:text-indigo-600 transition-colors inline-block"
+                    className="hover:text-indigo-600 transition-colors"
                   >
                     {item}
                   </Link>
@@ -104,30 +102,28 @@ export default function Footer() {
 
           {/* Contact Column */}
           <div>
-            <h3 className="font-black text-slate-900 mb-6 uppercase text-xs tracking-[0.2em]">
-              Văn phòng liên hệ
+            <h3 className="font-semibold text-slate-900 mb-5 text-sm uppercase tracking-wider">
+              Liên hệ
             </h3>
-            <ul className="space-y-5 text-sm font-bold text-slate-600">
+            <ul className="space-y-4 text-sm text-slate-500">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-indigo-500 shrink-0" />
-                <span className="leading-tight text-slate-500">
-                  TP. Hồ Chí Minh, Việt Nam
-                </span>
+                <MapPin className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                <span className="leading-tight">TP. Hồ Chí Minh, Việt Nam</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-indigo-500 shrink-0" />
+                <Phone className="w-4 h-4 text-slate-400 shrink-0" />
                 <a
                   href="tel:0937120121"
-                  className="hover:text-indigo-600 transition-colors text-lg font-black text-slate-900"
+                  className="hover:text-indigo-600 font-medium text-slate-700 transition-colors"
                 >
                   0937 120 121
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-indigo-500 shrink-0" />
+                <Mail className="w-4 h-4 text-slate-400 shrink-0" />
                 <a
                   href="mailto:contact@nhatsoft.com"
-                  className="hover:text-indigo-600 transition-colors text-slate-500"
+                  className="hover:text-indigo-600 transition-colors"
                 >
                   contact@nhatsoft.com
                 </a>
@@ -137,19 +133,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
+        <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-400 text-xs">
             © {new Date().getFullYear()} NhatSoft Ecosystem. All rights
             reserved.
           </p>
-          <div className="flex gap-8 text-xs font-black text-slate-400 uppercase tracking-widest">
-            <Link href="#" className="hover:text-indigo-600 transition-colors">
+          <div className="flex gap-6 text-xs text-slate-400">
+            <Link href="#" className="hover:text-slate-900 transition-colors">
               Privacy
             </Link>
-            <Link href="#" className="hover:text-indigo-600 transition-colors">
+            <Link href="#" className="hover:text-slate-900 transition-colors">
               Terms
             </Link>
-            <Link href="#" className="hover:text-indigo-600 transition-colors">
+            <Link href="#" className="hover:text-slate-900 transition-colors">
               Cookies
             </Link>
           </div>
