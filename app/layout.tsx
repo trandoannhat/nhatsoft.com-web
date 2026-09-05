@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: "NhatSoft Ecosystem",
     images: [
       {
-        url: "/opengraph-image.jpg", // Cần chuẩn bị ảnh bìa này
+        url: "/opengraph-image.png", // Cần chuẩn bị ảnh bìa này
         width: 1200,
         height: 630,
         alt: "NhatSoft Ecosystem Thumbnail",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NhatSoft - Giải pháp phần mềm Enterprise",
     description: "Hệ sinh thái phần mềm đóng gói chuẩn Enterprise.",
-    images: ["/opengraph-image.jpg"],
+    images: ["/opengraph-image.png"],
   },
 
   // Hướng dẫn Bot của Google
