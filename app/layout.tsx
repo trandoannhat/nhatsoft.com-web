@@ -1,32 +1,38 @@
-// Cập nhật chuẩn SEO cho NhatSoft
+// Cập nhật chuẩn SEO cho NhatSoft - Giao diện Enterprise
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-// Cấu hình font Be Vietnam Pro chuẩn KiraApp
-const beVietnam = Be_Vietnam_Pro({
-  weight: ["400", "500", "600", "700", "800", "900"],
+// Cấu hình font Inter (Font chữ chính)
+const inter = Inter({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-be-vietnam",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+// Cấu hình font JetBrains Mono (Dùng cho thông số kỹ thuật, code, thẻ tag)
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
 // Thiết lập Viewport riêng (Chuẩn Next.js 14+)
 export const viewport: Viewport = {
-  themeColor: "#4f46e5", // Màu Indigo-600 đồng bộ với giao diện
+  themeColor: "#2563eb", // Chuyển sang dải màu brand-600 mới
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
 };
 
-// Cấu hình chuẩn SEO & Open Graph cho NhatSoft
+// Cấu hình chuẩn SEO & Open Graph cho NhatSoft (Đã giữ nguyên dữ liệu của bạn)
 export const metadata: Metadata = {
   metadataBase: new URL("https://nhatsoft.com"),
   title: {
     default: "NhatSoft - Giải pháp phần mềm & Kiến trúc Enterprise",
-    template: "%s | NhatSoft", // Các trang con sẽ tự nối đuôi. VD: "Sản phẩm A | NhatSoft"
+    template: "%s | NhatSoft",
   },
   description:
     "Hệ sinh thái phần mềm đóng gói chuẩn Enterprise. Chuyên tư vấn kiến trúc hệ thống, phát triển Web/Mobile App và cung cấp dịch vụ API chất lượng cao.",
@@ -49,8 +55,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-
-  // Open Graph (Tối ưu hiển thị khi share qua Zalo, Facebook)
   openGraph: {
     type: "website",
     locale: "vi_VN",
@@ -61,23 +65,19 @@ export const metadata: Metadata = {
     siteName: "NhatSoft Ecosystem",
     images: [
       {
-        url: "/opengraph-image.png", // Cần chuẩn bị ảnh bìa này
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "NhatSoft Ecosystem Thumbnail",
       },
     ],
   },
-
-  // Twitter Card (Dành cho share trên X/Twitter, LinkedIn)
   twitter: {
     card: "summary_large_image",
     title: "NhatSoft - Giải pháp phần mềm Enterprise",
     description: "Hệ sinh thái phần mềm đóng gói chuẩn Enterprise.",
     images: ["/opengraph-image.png"],
   },
-
-  // Hướng dẫn Bot của Google
   robots: {
     index: true,
     follow: true,
@@ -97,8 +97,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${beVietnam.variable}`}>
-      <body className="font-sans antialiased text-slate-900 selection:bg-indigo-100 selection:text-indigo-700 min-h-screen flex flex-col">
+    <html lang="vi" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        {/* Nhúng bộ icon Material Symbols Outlined từ giao diện mới */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      {/* Cập nhật class body theo chuẩn Enterprise (text-[15px], màu selection) */}
+      <body className="bg-white font-sans text-slate-800 text-[15px] leading-relaxed antialiased selection:bg-brand-600 selection:text-white min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />

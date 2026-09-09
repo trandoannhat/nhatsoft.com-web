@@ -2,17 +2,33 @@
 
 :root {
   --background: #ffffff;
-  /* Chuyển foreground thành Slate-900 để màu chữ sâu và sang hơn đen tuyền */
   --foreground: #0f172a;
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Ghi đè font mặc định thành Be Vietnam Pro */
-  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  /* Font chữ chuẩn */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Bảng màu Brand - Định hướng Modern SaaS / Trẻ trung (Vibrant Indigo) */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5; /* Màu chủ đạo: Indigo hiện đại, sáng và nổi bật */
+  --color-brand-700: #4338ca; /* Màu khi Hover: Đậm đà, chắc chắn */
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
+
+  /* Bảng màu Slate tối ưu độ sâu */
+  --color-slate-850: #152033;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #080d1a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,13 +38,44 @@
   }
 }
 
-/* Kỹ thuật Typography của các trang Product/SaaS */
 body {
   background: var(--background);
   color: var(--foreground);
-
-  /* Ép trình duyệt render font chữ mượt mà nhất */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tùy chỉnh Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Grid Background & Light Glow */
+.blueprint-grid {
+  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+.hero-glow-light {
+  background: radial-gradient(
+    700px circle at 50% 15%,
+    rgba(37, 99, 235, 0.07),
+    transparent 75%
+  );
+}
+
+/* Ẩn icon mặc định của thẻ details */
+details summary::-webkit-details-marker {
+  display: none;
 }

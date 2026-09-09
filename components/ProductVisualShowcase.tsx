@@ -14,15 +14,18 @@ export default function ProductVisualShowcase({
   if (!showcases || showcases.length === 0) return null;
 
   return (
-    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-100">
+    <div className="bg-white py-16 px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-200/90">
       <div className="max-w-7xl mx-auto space-y-20">
         <div className="text-center">
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-brand-600 font-semibold mb-2">
+            CORE MODULES // TÍNH NĂNG CỐT LÕI
+          </div>
           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            Chức năng cốt lõi
+            Kiến trúc nghiệp vụ chuyên sâu
           </h2>
-          <p className="mt-3 max-w-2xl mx-auto text-base text-slate-500">
-            Trải nghiệm các module nghiệp vụ được thiết kế tối ưu cho trải
-            nghiệm người dùng cuối.
+          <p className="mt-3 max-w-2xl mx-auto text-base text-slate-600 leading-relaxed">
+            Các module được thiết kế tối ưu dữ liệu lớn, giao diện kỹ thuật số
+            trực quan và bảo mật tuyệt đối cho mọi phiên làm việc.
           </p>
         </div>
 
@@ -41,14 +44,16 @@ export default function ProductVisualShowcase({
               <div
                 className={`relative ${isEven ? "lg:order-1" : "lg:order-2"}`}
               >
-                <div className="relative rounded-2xl shadow-sm border border-slate-200 overflow-hidden bg-slate-50 aspect-[16/10]">
+                <div className="relative rounded-xl shadow-sm border border-slate-200 overflow-hidden bg-slate-50 aspect-[16/10]">
                   <Image
                     src={showcase.imagePath}
                     alt={showcase.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out border-b border-slate-200"
                     priority={index === 0}
                   />
+                  {/* Subtle technical overlay frame */}
+                  <div className="absolute inset-0 border border-slate-900/5 rounded-xl pointer-events-none"></div>
                 </div>
               </div>
 
@@ -57,16 +62,14 @@ export default function ProductVisualShowcase({
                 className={`space-y-5 ${isEven ? "lg:order-2" : "lg:order-1"}`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`p-2.5 rounded-lg ${showcase.bgColor}`}>
-                    <LucideIcon
-                      className={`w-6 h-6 ${showcase.bgColor.replace("bg-", "text-").replace("-50", "-600")}`}
-                    />
+                  <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 shadow-xs">
+                    <LucideIcon className="w-6 h-6 text-brand-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
+                  <h3 className="text-[22px] font-bold text-slate-900 tracking-tight">
                     {showcase.title}
                   </h3>
                 </div>
-                <p className="text-base text-slate-600 leading-relaxed">
+                <p className="text-[15px] text-slate-600 leading-relaxed">
                   {showcase.desc}
                 </p>
               </div>

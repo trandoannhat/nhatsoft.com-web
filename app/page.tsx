@@ -5,42 +5,30 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
-  ArrowRight,
-  ShieldCheck,
-  Zap,
   LayoutGrid,
-  Globe,
-  PieChart,
-  FileSpreadsheet,
-  ShieldAlert,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
   CheckCircle2,
-  Database,
-  Lock,
-  Server,
-  Code,
-  Layers,
-  Settings,
 } from "lucide-react";
 
-import { PRODUCTS } from "../data/products";
+// Import dữ liệu
+import { PRODUCTS } from "@/data/products";
+import { COMPANY_STATS, SERVICES, WORKFLOW_STEPS } from "@/data/company";
 import ConsultationModal from "@/components/ConsultationModal";
 
 export default function NhatSoftProductHome() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const flagshipProducts = PRODUCTS.slice(1, 4);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Lọc ra các sản phẩm có hình ảnh showcase VÀ KHÔNG PHẢI sản phẩm web cụ thể
+  // Lọc sản phẩm hiển thị
+  const flagshipProducts = PRODUCTS.slice(1, 4);
   const sliderItems = PRODUCTS.filter(
     (p) =>
       p.visualShowcases &&
       p.visualShowcases.length > 0 &&
       p.id !== "outsource-web-dev",
   );
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Tự động chuyển slide sau mỗi 4 giây
   useEffect(() => {
     if (sliderItems.length === 0) return;
     const interval = setInterval(() => {
@@ -49,324 +37,320 @@ export default function NhatSoftProductHome() {
     return () => clearInterval(interval);
   }, [sliderItems.length]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % sliderItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + sliderItems.length) % sliderItems.length,
-    );
-  };
-
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-700">
-      {/* ========================================== */}
-      {/* 1. HERO SECTION & PRODUCT IMAGE SLIDER */}
-      {/* ========================================== */}
-      <section className="relative pt-8 pb-12 md:pt-10 md:pb-16 overflow-hidden">
-        {/* Nền lưới */}
-        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#f8fafc_1px,transparent_1px),linear-gradient(to_bottom,#f8fafc_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mb-6">
-          {/* Main Headline - Đã được ép gọn chiều cao tối đa */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col items-center"
-          >
-            {/* Thu nhỏ padding và margin của badge */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-semibold mb-3">
-              <Zap className="w-3.5 h-3.5 fill-indigo-500" />
-              Nền tảng phần mềm All-in-One
-            </span>
-
-            {/* Bỏ thẻ <br/> ngắt dòng, mở rộng max-w-4xl để dàn ngang trên 1 dòng ở Desktop */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-2 max-w-4xl mx-auto">
-              Nền tảng phần mềm cho vận hành doanh nghiệp hiện đại
-            </h1>
-
-            {/* Mở rộng max-w-4xl để text mô tả nằm gọn trên 1 dòng (với màn hình to), giảm margin */}
-            <p className="text-sm md:text-base text-slate-600 mb-5 max-w-4xl mx-auto leading-relaxed">
-              Một nền tảng duy nhất - Đa dạng nghiệp vụ. Xây dựng kiến trúc vững
-              chắc từ ERP, CRM, HRM đến Quản lý tài chính chuyên sâu.
-            </p>
-
-            {/* Thu gọn nút bấm: bỏ flex-col trên mobile (để 2 nút luôn nằm ngang), giảm padding */}
-            <div className="flex flex-row gap-3 justify-center items-center mb-6">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors shadow-sm"
-              >
-                Nhận tư vấn
-              </button>
-              <a
-                href="#ecosystem"
-                className="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors"
-              >
-                Hệ sinh thái
-              </a>
-            </div>
-          </motion.div>
-          {/* KHUNG SLIDER ẢNH SẢN PHẨM THỰC TẾ (Đã được phục hồi và tinh chỉnh) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative max-w-5xl mx-auto px-4 sm:px-0"
-          >
-            <div className="relative rounded-2xl border border-slate-200/80 bg-slate-100/80 shadow-2xl shadow-slate-300/40 overflow-hidden aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] group">
-              {sliderItems.length > 0 && (
-                <Link
-                  href={`/products/${sliderItems[currentIndex].id}`}
-                  className="block relative w-full h-full"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentIndex}
-                      initial={{ opacity: 0, scale: 1.02 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative w-full h-full"
-                    >
-                      <Image
-                        src={
-                          sliderItems[currentIndex].visualShowcases![0]
-                            .imagePath
-                        }
-                        alt={sliderItems[currentIndex].title}
-                        fill
-                        className="object-contain p-2 md:p-6"
-                        priority
-                      />
-
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-left">
-                        <span className="inline-block px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-md uppercase tracking-wider w-max mb-2">
-                          {sliderItems[currentIndex].badge ||
-                            "Sản phẩm chủ lực"}
-                        </span>
-                        <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-2">
-                          {sliderItems[currentIndex].title}
-                        </h3>
-                        <p className="text-slate-300 text-sm md:text-base line-clamp-1 max-w-2xl">
-                          {sliderItems[currentIndex].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </Link>
-              )}
-
-              {/* Slider Controls */}
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  prevSlide();
-                }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-800 flex items-center justify-center shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-20"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  nextSlide();
-                }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-800 flex items-center justify-center shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-20"
-                aria-label="Next slide"
-              >
-                <ChevronRightIcon className="w-5 h-5" />
-              </button>
-
-              <div className="absolute bottom-4 right-6 flex items-center gap-1.5 z-20">
-                {sliderItems.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setCurrentIndex(idx);
-                    }}
-                    className={`h-2 rounded-full transition-all ${currentIndex === idx ? "w-6 bg-indigo-500" : "w-2 bg-white/40 hover:bg-white"}`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
+    <div className="flex flex-col w-full min-h-screen bg-white font-sans text-slate-800 text-[15px] leading-relaxed pt-16">
+      {/* 1. HERO SECTION (Khôi phục đầy đủ code) */}
+      <section className="relative w-full border-b border-slate-200/80 bg-gradient-to-b from-slate-50/80 via-white to-white blueprint-grid hero-glow-light overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
+              <div className="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 bg-brand-50 border border-brand-200 rounded-full font-mono text-xs text-brand-700 font-semibold shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-brand-600"></span>
+                <span>PHÁT TRIỂN PHẦN MỀM DOANH NGHIỆP & NỀN TẢNG SAAS</span>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Tech Stack Trust Banner (Đã được phục hồi) */}
-          <div className="mt-8 md:mt-10 flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-            <span className="text-sm font-bold flex items-center gap-2">
-              <Code className="w-5 h-5" /> .NET Core
-            </span>
-            <span className="text-sm font-bold flex items-center gap-2">
-              <Database className="w-5 h-5" /> PostgreSQL
-            </span>
-            <span className="text-sm font-bold flex items-center gap-2">
-              <Server className="w-5 h-5" /> SQL Server
-            </span>
-            <span className="text-sm font-bold flex items-center gap-2">
-              <Globe className="w-5 h-5" /> Cloud Native
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================== */}
-      {/* 2. PLATFORM CORE VALUES */}
-      {/* ========================================== */}
-      <section className="py-12 border-y border-slate-100 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">
-            Kiến trúc phần mềm chuẩn Enterprise
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-200">
-            <div className="pt-6 md:pt-0">
-              <div className="mx-auto w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4">
-                <Layers className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold text-slate-900">
-                Kiến trúc Multi-tenant
-              </h4>
-              <p className="text-sm text-slate-500 mt-2 px-4">
-                Đảm bảo cô lập và bảo mật dữ liệu tuyệt đối cho từng doanh
-                nghiệp.
-              </p>
-            </div>
-            <div className="pt-6 md:pt-0">
-              <div className="mx-auto w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                <Lock className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold text-slate-900">
-                Bảo mật đa lớp
-              </h4>
-              <p className="text-sm text-slate-500 mt-2 px-4">
-                Mã hóa chuẩn công nghiệp, phân quyền sâu tới từng tác vụ (RBAC).
-              </p>
-            </div>
-            <div className="pt-6 md:pt-0">
-              <div className="mx-auto w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
-                <Globe className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold text-slate-900">
-                RESTful API Sẵn sàng
-              </h4>
-              <p className="text-sm text-slate-500 mt-2 px-4">
-                Dễ dàng tích hợp với các hệ thống ERP, Kế toán, và phần mềm bên
-                thứ ba.
-              </p>
-            </div>
-            <div className="pt-6 md:pt-0">
-              <div className="mx-auto w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4">
-                <Settings className="w-6 h-6" />
-              </div>
-              <h4 className="text-lg font-bold text-slate-900">
-                Tùy biến linh hoạt
-              </h4>
-              <p className="text-sm text-slate-500 mt-2 px-4">
-                Quy trình (Workflow) động, mở rộng dễ dàng theo quy mô phát
-                triển.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================== */}
-      {/* 3. FEATURED RELEASE (Tin tức ra mắt NGÂN SÁCH) */}
-      {/* ========================================== */}
-      <section className="py-20 md:py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-900/20 to-transparent pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-            <div className="max-w-2xl">
-              <span className="text-blue-400 font-bold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
-                <Zap className="w-4 h-4 fill-blue-400" /> Tiêu điểm giải pháp
-              </span>
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-                Quản lý Ngân sách: <br />
-                <span className="text-white">
-                  Chặt chẽ, Minh bạch & An toàn.
+              <h1 className="font-sans text-[40px] sm:text-[50px] lg:text-[56px] font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.12] mb-6">
+                Kiến tạo phần mềm doanh nghiệp & Nền tảng{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600">
+                  SaaS quy chuẩn.
                 </span>
-              </h2>
-              <p className="text-slate-400 text-lg leading-relaxed">
-                Chấm dứt ma trận thủ công. Loại bỏ rủi ro xuất toán. NhatSoft ra
-                mắt "trợ lý số" giải quyết trọn vẹn vòng đời tài chính cho cơ
-                quan hành chính.
+              </h1>
+              <p className="font-sans text-[16.5px] text-slate-600 leading-relaxed mb-9 max-w-xl">
+                NhatSoft đồng hành cùng các tổ chức xây dựng hệ thống phần mềm
+                lõi quy mô lớn, kiến trúc chuẩn mực và tự động hóa quy trình
+                nghiệp vụ chuyên sâu — từ tư vấn giải pháp đến vận hành liên
+                tục.
               </p>
-            </div>
-            <Link
-              href="/products/budget-management"
-              className="shrink-0 px-6 py-3 bg-white text-slate-900 rounded-lg font-bold hover:bg-slate-100 transition-colors flex items-center gap-2 shadow-lg shadow-white/10"
-            >
-              Khám phá chi tiết <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-800 transition-colors">
-              <div className="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mb-6">
-                <PieChart className="w-6 h-6" />
+              <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-brand-600 hover:bg-brand-700 text-white font-semibold text-[15px] px-6 py-3.5 rounded-lg shadow-sm shadow-blue-500/25 hover:shadow-lg hover:shadow-blue-500/30 transition-all gap-2"
+                >
+                  <span>Đăng ký tư vấn miễn phí</span>
+                  <span className="material-symbols-outlined text-[18px]">
+                    arrow_forward
+                  </span>
+                </button>
+                <Link
+                  href="#case-studies-section"
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-700 font-semibold text-[15px] px-5 py-3.5 rounded-lg border border-slate-300 hover:border-slate-400 shadow-xs transition-all gap-2 group"
+                >
+                  <span>Xem Dự án tiêu biểu</span>
+                  <span className="material-symbols-outlined text-[18px] text-slate-500 group-hover:translate-x-0.5 transition-transform">
+                    arrow_forward
+                  </span>
+                </Link>
               </div>
-              <h3 className="text-xl font-bold mb-3">
-                Phân bổ Dự toán thông minh
-              </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Linh hoạt "chẻ nhỏ" nguồn vốn từ Quyết định giao ngân sách đầu
-                năm xuống tận từng tiểu mục chi tiết một cách chặt chẽ.
-              </p>
+              <div className="pt-6 border-t border-slate-200/90 w-full grid grid-cols-3 gap-4 font-mono text-[12px]">
+                <div>
+                  <div className="text-slate-400 uppercase text-[10px] tracking-wider">
+                    Kiến trúc
+                  </div>
+                  <div className="font-semibold text-slate-800 mt-0.5">
+                    Clean DDD / CQRS
+                  </div>
+                </div>
+                <div>
+                  <div className="text-slate-400 uppercase text-[10px] tracking-wider">
+                    Khả năng mở rộng
+                  </div>
+                  <div className="font-semibold text-slate-800 mt-0.5">
+                    Multi-Tenant Ready
+                  </div>
+                </div>
+                <div>
+                  <div className="text-slate-400 uppercase text-[10px] tracking-wider">
+                    Công nghệ cốt lõi
+                  </div>
+                  <div className="font-semibold text-slate-800 mt-0.5">
+                    .NET 8/9 • Next.js
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-800 transition-colors">
-              <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6">
-                <FileSpreadsheet className="w-6 h-6" />
+            {/* Terminal Topology Visual */}
+            <div className="lg:col-span-6 w-full relative">
+              <div className="relative rounded-2xl bg-white border border-slate-200 shadow-xl p-6 text-slate-800 font-sans overflow-hidden">
+                <div className="absolute -right-16 -top-16 w-56 h-56 bg-brand-50 rounded-full blur-3xl pointer-events-none opacity-60"></div>
+                <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 font-mono text-[11px]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                    <span className="text-slate-500 ml-1 font-semibold">
+                      cluster-prod-asia // telemetry-trực-tiếp
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span className="text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      99.9% Hoạt động
+                    </span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-3 mb-4 font-mono">
+                  <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-lg">
+                    <div className="text-[10px] uppercase font-bold text-slate-400">
+                      Thông lượng API
+                    </div>
+                    <div className="text-[18px] font-bold text-slate-900 mt-0.5">
+                      24.8k{" "}
+                      <span className="text-[11px] font-normal text-slate-500">
+                        req/s
+                      </span>
+                    </div>
+                    <div className="text-[10.5px] text-emerald-600 font-semibold mt-1 flex items-center gap-0.5">
+                      <span className="material-symbols-outlined text-[13px]">
+                        trending_up
+                      </span>{" "}
+                      +12.4% cao điểm
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-lg">
+                    <div className="text-[10px] uppercase font-bold text-slate-400">
+                      Độ trễ P95
+                    </div>
+                    <div className="text-[18px] font-bold text-slate-900 mt-0.5">
+                      18.4{" "}
+                      <span className="text-[11px] font-normal text-slate-500">
+                        ms
+                      </span>
+                    </div>
+                    <div className="text-[10.5px] text-slate-500 mt-1">
+                      Global Edge
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 border border-slate-200/80 p-3 rounded-lg">
+                    <div className="text-[10px] uppercase font-bold text-slate-400">
+                      Phiên làm việc
+                    </div>
+                    <div className="text-[18px] font-bold text-brand-600 mt-0.5">
+                      1,248{" "}
+                      <span className="text-[11px] font-normal text-slate-500">
+                        hoạt động
+                      </span>
+                    </div>
+                    <div className="text-[10.5px] text-emerald-600 font-semibold mt-1">
+                      0% rò rỉ dữ liệu
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2.5">
+                  <div className="bg-white border border-slate-200 p-3.5 rounded-lg flex items-center justify-between shadow-xs">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded bg-brand-50 text-brand-600 flex items-center justify-center font-bold">
+                        <span className="material-symbols-outlined text-[18px]">
+                          dns
+                        </span>
+                      </div>
+                      <div>
+                        <div className="text-slate-900 font-bold text-[12.5px]">
+                          Cổng biên & Reverse Proxy
+                        </div>
+                        <div className="text-slate-500 font-mono text-[11px]">
+                          TLS 1.3 • Token Bucket Rate Limiter
+                        </div>
+                      </div>
+                    </div>
+                    <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[10px] font-bold rounded">
+                      HOẠT ĐỘNG
+                    </span>
+                  </div>
+                  <div className="bg-brand-50/40 border border-brand-200 p-3.5 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="material-symbols-outlined text-brand-600 text-[18px]">
+                          hub
+                        </span>
+                        <span className="text-slate-900 font-bold text-[12.5px]">
+                          NhatSoft Core App Engine (.NET 9)
+                        </span>
+                      </div>
+                      <span className="px-2 py-0.5 bg-brand-100 text-brand-800 font-mono text-[10px] font-bold rounded">
+                        TỰ ĐỘNG MỞ RỘNG
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                      <div className="bg-white p-2 rounded border border-brand-100 shadow-xs">
+                        <span className="text-slate-500">Command Bus:</span>
+                        <span className="text-slate-900 font-semibold ml-1">
+                          MediatR
+                        </span>
+                      </div>
+                      <div className="bg-white p-2 rounded border border-brand-100 shadow-xs">
+                        <span className="text-slate-500">Tenant Resolver:</span>
+                        <span className="text-slate-900 font-semibold ml-1">
+                          Schema
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3.5 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-brand-600 font-bold">$</span>
+                    <span>trạng thái triển khai: clean-architecture-ready</span>
+                  </div>
+                  <span className="text-slate-400 font-semibold">
+                    CI/CD: GitHub Actions
+                  </span>
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-3">
-                Bóc tách số liệu thực thu
-              </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Công nghệ nhận diện dữ liệu Excel "bọc thép". Tự động triệt tiêu
-                lỗi cộng gộp trùng lặp giữa dòng cha và dòng con.
-              </p>
-            </div>
-
-            <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-800 transition-colors">
-              <div className="w-12 h-12 bg-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center mb-6">
-                <ShieldAlert className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">
-                Chốt chặn Kiểm soát chi
-              </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Tự động rà soát số dư thực tế theo thời gian thực. Chặn đứng
-                giao dịch vượt mức khi lập Giấy rút dự toán hay Ủy nhiệm chi.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========================================== */}
-      {/* 4. HỆ SINH THÁI SẢN PHẨM KHÁC (ECOSYSTEM) */}
-      {/* ========================================== */}
-      <section id="ecosystem" className="py-24 md:py-32 bg-white">
+      {/* 2. THỐNG KÊ (Dữ liệu động) */}
+      <section className="w-full border-b border-slate-200/80 bg-white py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
-              Hệ sinh thái Giải pháp
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 pb-14 text-center">
+            {COMPANY_STATS.map((stat, idx) => (
+              <div
+                key={idx}
+                className="p-4 bg-slate-50/60 rounded-xl border border-slate-100"
+              >
+                <div
+                  className={`font-sans text-4xl sm:text-5xl font-extrabold tracking-tight ${stat.color || "text-slate-900"}`}
+                >
+                  {stat.value}
+                </div>
+                <div className="font-sans text-sm font-bold text-slate-800 mt-2">
+                  {stat.label}
+                </div>
+                <div className="text-xs text-slate-500 mt-1">{stat.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. DỊCH VỤ CỐT LÕI (Dữ liệu động) */}
+      <section
+        className="w-full border-b border-slate-200/80 bg-slate-50/60 py-24"
+        id="services-section"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-14">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-brand-600 font-semibold mb-2">
+              DỊCH VỤ & GIẢI PHÁP // NĂNG LỰC CỐT LÕI
+            </div>
+            <h2 className="font-sans text-[33px] sm:text-[42px] font-extrabold text-slate-900 tracking-tight">
+              Xây dựng phần mềm giải quyết triệt để bài toán kinh doanh.
             </h2>
-            <p className="text-lg text-slate-500 leading-relaxed">
-              Các module chuyên biệt được thiết kế để hoạt động độc lập hoặc
-              tích hợp xuyên suốt, đáp ứng mọi nghiệp vụ phức tạp của doanh
-              ngệp.
+            <p className="text-[16px] text-slate-600 mt-3 leading-relaxed">
+              Chúng tôi tập trung vào 4 nhóm năng lực kỹ thuật then chốt, mang
+              lại hạ tầng công nghệ bền vững, khả năng mở rộng không giới hạn và
+              bảo mật tuyệt đối cho tổ chức.
             </p>
           </div>
 
-          <div className="space-y-24 md:space-y-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SERVICES.map((srv, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl border border-slate-200/90 p-7 flex flex-col justify-between shadow-xs hover:shadow-md hover:border-brand-300 transition-all group"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-brand-600 group-hover:text-white transition-all shadow-xs">
+                    <span className="material-symbols-outlined text-[30px]">
+                      {srv.icon}
+                    </span>
+                  </div>
+                  <h3 className="font-sans text-[20px] font-bold text-slate-900 mb-2.5">
+                    {srv.title}
+                  </h3>
+                  <p className="text-[14px] text-slate-600 leading-relaxed mb-6">
+                    {srv.desc}
+                  </p>
+                </div>
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-5 font-mono text-[11px] text-slate-600">
+                    {srv.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 bg-slate-100 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 text-[14px] font-bold text-brand-600 group-hover:text-brand-700 transition-colors"
+                  >
+                    <span>Tìm hiểu thêm</span>
+                    <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                      arrow_forward
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. HỆ SINH THÁI (Render từ mảng PRODUCTS) */}
+      <section
+        id="saas-core-section"
+        className="py-24 bg-white border-b border-slate-200/80"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-brand-600 font-semibold mb-2">
+              HỆ SINH THÁI GIẢI PHÁP // NHATSOFT ECOSYSTEM
+            </div>
+            <h2 className="text-[33px] md:text-[42px] font-extrabold text-slate-900 tracking-tight mb-6">
+              Mô-đun chuyên biệt. Tích hợp xuyên suốt.
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Các nền tảng được thiết kế để hoạt động độc lập hoặc đồng bộ dữ
+              liệu hoàn toàn dựa trên khung kiến trúc SaaS Core.
+            </p>
+          </div>
+
+          <div className="space-y-24">
             {flagshipProducts.map((product, index) => {
               const isEven = index % 2 === 0;
               return (
@@ -377,7 +361,7 @@ export default function NhatSoftProductHome() {
                   <div className="w-full lg:w-1/2">
                     <Link
                       href={`/products/${product.id}`}
-                      className="block relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 group bg-slate-50"
+                      className="block relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 shadow-lg group bg-slate-50"
                     >
                       {product.visualShowcases &&
                       product.visualShowcases.length > 0 ? (
@@ -389,29 +373,29 @@ export default function NhatSoftProductHome() {
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <LayoutGrid className="w-16 h-16 text-slate-200" />
+                          <LayoutGrid className="w-16 h-16 text-slate-300" />
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/5 transition-colors duration-300"></div>
+                      <div className="absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/5 transition-colors duration-300"></div>
                     </Link>
                   </div>
                   <div className="w-full lg:w-1/2 space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-wider border border-brand-100">
                       {product.categoryId}
                     </div>
                     <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
                       {product.title}
                     </h3>
-                    <p className="text-lg text-slate-500 leading-relaxed">
+                    <p className="text-lg text-slate-600 leading-relaxed">
                       {product.desc}
                     </p>
-                    <ul className="space-y-3 pt-2">
+                    <ul className="space-y-3 pt-2 font-sans">
                       {product.features.slice(0, 3).map((feature, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-slate-600"
+                          className="flex items-start gap-3 text-slate-700"
                         >
-                          <CheckCircle2 className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-brand-600 shrink-0 mt-0.5" />
                           <span className="leading-relaxed">
                             {feature.replace(
                               /[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g,
@@ -424,10 +408,12 @@ export default function NhatSoftProductHome() {
                     <div className="pt-6">
                       <Link
                         href={`/products/${product.id}`}
-                        className="inline-flex items-center gap-2 font-semibold text-indigo-600 hover:text-indigo-700 transition-colors group"
+                        className="inline-flex items-center gap-2 font-semibold text-brand-600 hover:text-brand-700 transition-colors group"
                       >
                         Khám phá chi tiết{" "}
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
+                          arrow_forward
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -438,79 +424,109 @@ export default function NhatSoftProductHome() {
         </div>
       </section>
 
-      {/* ========================================== */}
-      {/* 5. NỀN TẢNG LÕI NHATSOFT CORE */}
-      {/* ========================================== */}
-      <section className="py-24 bg-slate-50 border-t border-slate-100">
+      {/* 5. QUY TRÌNH (Dữ liệu động) */}
+      <section
+        className="w-full border-b border-slate-200/80 bg-slate-50/60 py-24"
+        id="process-section"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-              Sức mạnh từ NhatSoft Core
+          <div className="max-w-3xl mb-14 text-left">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-brand-600 font-semibold mb-2">
+              AGILE ENGINEERING WORKFLOW // QUY TRÌNH PHÁT TRIỂN
+            </div>
+            <h2 className="font-sans text-[33px] sm:text-[42px] font-extrabold text-slate-900 tracking-tight">
+              Quy trình phát triển chuẩn xác 6 giai đoạn.
             </h2>
-            <p className="text-lg text-slate-500">
-              Không chỉ là các module phần mềm rời rạc, mọi sản phẩm đều được
-              xây dựng trên một Framework dùng chung mạnh mẽ.
+            <p className="text-[16px] text-slate-600 mt-2 leading-relaxed">
+              Mô hình bàn giao Agile kết hợp tiến độ minh bạch, code review liên
+              tục và kiểm soát rủi ro từ ý tưởng đến vận hành thực tế.
             </p>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10">
+            {WORKFLOW_STEPS.map((wf, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between shadow-xs hover:border-brand-300 hover:shadow-md transition-all"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-9 h-9 rounded-full bg-brand-600 text-white font-mono text-xs font-bold flex items-center justify-center shadow-xs">
+                      {wf.step}
+                    </span>
+                  </div>
+                  <h3 className="font-sans text-[16px] font-bold text-slate-900 mb-2">
+                    {wf.title}
+                  </h3>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    {wf.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <ShieldCheck className="w-8 h-8 text-indigo-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Phân quyền RBAC</h3>
-              <p className="text-slate-500 text-sm">
-                Kiểm soát truy cập dựa trên vai trò, cho phép phân quyền sâu tới
-                từng field dữ liệu và action cụ thể.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <Zap className="w-8 h-8 text-amber-500 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Workflow Engine</h3>
-              <p className="text-slate-500 text-sm">
-                Cấu hình quy trình phê duyệt động đa cấp bậc mà không cần can
-                thiệp vào mã nguồn.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <Database className="w-8 h-8 text-emerald-500 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Audit Logging</h3>
-              <p className="text-slate-500 text-sm">
-                Lưu vết toàn bộ lịch sử thao tác của người dùng. Dễ dàng truy
-                xuất và đối soát khi có sự cố dữ liệu.
-              </p>
+      {/* 6. FINAL CTA SECTION (Khôi phục đầy đủ code) */}
+      <section className="w-full bg-white py-20 lg:py-24" id="contact-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-8 sm:p-12 lg:p-16 text-white border border-slate-800 shadow-2xl overflow-hidden">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-500/20 border border-brand-400/30 text-brand-300 font-mono text-xs uppercase tracking-wider rounded-full mb-4">
+                  TRỰC TIẾP VỚI SOLUTION ARCHITECT
+                </div>
+                <h2 className="font-sans text-[28px] sm:text-[40px] font-extrabold tracking-tight text-white leading-[1.2] mb-4">
+                  Sẵn sàng kiến tạo hệ thống phần mềm đột phá cho doanh nghiệp
+                  của bạn?
+                </h2>
+                <p className="text-slate-300 text-[16px] max-w-2xl leading-relaxed mb-8">
+                  Đội ngũ kỹ sư phần mềm NhatSoft sẵn sàng làm việc cùng bạn.
+                  Phân tích bài toán thực tế, đánh giá rủi ro kiến trúc và xây
+                  dựng giải pháp kỹ thuật tối ưu.
+                </p>
+                <div className="flex flex-wrap items-center gap-6 font-mono text-sm text-slate-300">
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-brand-400 text-[20px]">
+                      call
+                    </span>
+                    <span>
+                      Hotline:{" "}
+                      <strong className="text-white font-semibold">
+                        (+84) 0937 120 121
+                      </strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-brand-400 text-[20px]">
+                      mail
+                    </span>
+                    <span>
+                      Email:{" "}
+                      <strong className="text-white font-semibold">
+                        contact@nhatsoft.com
+                      </strong>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-center">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-brand-600 hover:bg-brand-500 text-white font-bold text-[15px] px-8 py-4 rounded-xl shadow-lg transition-all gap-2 text-center"
+                >
+                  <span>Đăng ký tư vấn miễn phí 1:1 →</span>
+                </button>
+                <div className="mt-3 font-mono text-xs text-slate-400">
+                  Tư vấn trực tiếp cùng Chuyên gia Kiến trúc
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========================================== */}
-      {/* 6. CTA SECTION */}
-      {/* ========================================== */}
-      <section className="py-24 bg-white border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            Sẵn sàng chuyển đổi số cùng NhatSoft?
-          </h2>
-          <p className="text-lg text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Trò chuyện trực tiếp với chuyên gia phần mềm của chúng tôi để tìm ra
-            định hướng công nghệ phù hợp nhất.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2"
-            >
-              Yêu cầu tư vấn ngay
-            </button>
-            <a
-              href="tel:0937120121"
-              className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium hover:bg-slate-50 transition-colors"
-            >
-              Hotline: 0937.120.121
-            </a>
-          </div>
-        </div>
-      </section>
-
+      {/* Modal */}
       <ConsultationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
