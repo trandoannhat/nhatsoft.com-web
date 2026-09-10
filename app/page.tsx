@@ -504,7 +504,7 @@ export default function NhatSoftProductHome() {
                     <span>
                       Email:{" "}
                       <strong className="text-white font-semibold">
-                        contact@nhatsoft.com
+                        doannhatit@gmail.com
                       </strong>
                     </span>
                   </div>
